@@ -4,5 +4,6 @@ document.getElementById('borrowing-button').addEventListener('click', function()
 });
 
 document.getElementById('return-button').addEventListener('click', function() {
+    window.location.href = '/return.html';
     return
 });
