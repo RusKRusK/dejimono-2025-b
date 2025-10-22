@@ -4,14 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/stypes.css">
+    <link rel="stylesheet" href="../styles/locker.css">
     <title>鍵管理システム</title>
 </head>
 <body>
 
-    <div class="key-management-container">
-        <h1>test</h1>
-    </div>
+    <h1>鍵管理システム - ロッカー選択</h1>
 
-    <script rel="module" src="../scripts/selectMode.js"></script>
+    <div class="locker-container">
+        <div class="locker" data-locker-id="101">
+            <div class="locker-number">101</div>
+            <button class="borrow-btn">借用</button>
+        </div>
+
+        <div class="locker" data-locker-id="102">
+            <div class="locker-number">102</div>
+            <button class="borrow-btn">借用</button>
+        </div>
+
+        <div class="locker" data-locker-id="103">
+            <div class="locker-number">103</div>
+            <button class="borrow-btn">借用</button>
+        </div>
+        
+        <div class="locker" data-locker-id="201">
+            <div class="locker-number">201</div>
+            <button class="borrow-btn">借用</button>
+        </div>
+
+        <div class="locker" data-locker-id="202">
+            <div class="locker-number">202</div>
+            <button class="borrow-btn">借用</button>
+        </div>
+
+        </div>
+
+    <script src="../scripts/borrowing.js"></script>
 </body>
 </html>

@@ -1,0 +1,83 @@
+body {
+    display: block;
+    justify-content: normal;
+    align-items: normal;
+    height: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.locker-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.locker {
+    width: 150px;
+    height: 150px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.locker:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+}
+
+.locker-number {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #555;
+}
+
+.borrow-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+    
+    background-color: #007bff;
+}
+
+.borrow-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+.borrow-btn:active {
+    transform: translateY(0);
+}
+
+.locker.borrowed .borrow-btn {
+    background-color: #dc3545;
+    cursor: not-allowed;
+}
+
+.locker.borrowed .borrow-btn:hover {
+    opacity: 1;
+    transform: none;
+    background-color: #a71d2a;
+}
