@@ -356,7 +356,7 @@ module.exports = {
   //contextStorage: {
   //    default: {
   //        module:"localfilesystem"
-  //    },
+  //    },z
   //},
 
   /** `global.keys()` returns a list of all properties set in global context.
@@ -568,7 +568,7 @@ module.exports = {
   //execMaxBufferSize: 10000000,
 
   /** Timeout in milliseconds for HTTP request connections. Defaults to 120s */
-  //httpRequestTimeout: 120000,
+  httpRequestTimeout: 120000,
 
   /** Retry time in milliseconds for MQTT connections */
   mqttReconnectTime: 15000,
