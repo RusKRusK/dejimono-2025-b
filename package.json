@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start": "node-red --settings ./settings.js --userDir ./",
+    "fmt": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "dependencies": {
+    "node-red": "^4.1.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
