@@ -24,6 +24,14 @@
     "env": []
   },
   {
+    "id": "50071d41aac5805d",
+    "type": "tab",
+    "label": "alcoholCheck",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
     "id": "f1738451fe9af7df",
     "type": "mqtt-broker",
     "name": "",
@@ -446,7 +454,7 @@
     "type": "switch",
     "z": "050ef760976f2d6e",
     "name": "",
-    "property": "waitingRequest",
+    "property": "waitingGetEmployeeRequest",
     "propertyType": "flow",
     "rules": [
       {
@@ -488,7 +496,7 @@
     "type": "function",
     "z": "050ef760976f2d6e",
     "name": "matchDetermination",
-    "func": "const waitingMsg = flow.get(\"waitingRequest\");\n\nconst employeeList = msg.payload;\nconsole.log(employeeList)\n\nconst targetId = msg.searchId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n// --- 応答メッセージの作成 ---\nmsg.req = waitingMsg.req;\nmsg.res = waitingMsg.res;\n\nif (matchedData) {\n    msg.payload = matchedData;\n} else {\n    msg.payload = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\n\nflow.set(\"waitingRequest\", null);\n\nreturn msg;\n",
+    "func": "const waitingMsg = flow.get(\"waitingGetEmployeeRequest\");\n\nconst employeeList = msg.payload;\n\nconst targetId = msg.searchId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n// --- 応答メッセージの作成 ---\nmsg.req = waitingMsg.req;\nmsg.res = waitingMsg.res;\n\nif (matchedData) {\n    msg.payload = matchedData;\n} else {\n    msg.payload = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\n\nflow.set(\"waitingGetEmployeeRequest\", null);\n\nreturn msg;\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -504,7 +512,7 @@
     "type": "function",
     "z": "050ef760976f2d6e",
     "name": "setWaitingRequest",
-    "func": "flow.set(\"waitingRequest\", msg);\n\nreturn null;\n",
+    "func": "flow.set(\"waitingGetEmployeeRequest\", msg);\n\nreturn null;\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -522,8 +530,193 @@
     "name": "",
     "statusCode": "",
     "headers": {},
-    "x": 1430,
+    "x": 1370,
     "y": 220,
     "wires": []
+  },
+  {
+    "id": "63cb31f9f15dfcb0",
+    "type": "inject",
+    "z": "50071d41aac5805d",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "true",
+    "payloadType": "bool",
+    "x": 110,
+    "y": 280,
+    "wires": [["da6ed4a774f255b5"]]
+  },
+  {
+    "id": "41667e3788af6e15",
+    "type": "http in",
+    "z": "50071d41aac5805d",
+    "name": "",
+    "url": "/alcohol/check",
+    "method": "get",
+    "upload": false,
+    "skipBodyParsing": false,
+    "swaggerDoc": "",
+    "x": 150,
+    "y": 180,
+    "wires": [["479bb4a31a313162"]]
+  },
+  {
+    "id": "a0fa4adb61ce53c9",
+    "type": "debug",
+    "z": "50071d41aac5805d",
+    "name": "debug 4",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 620,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "f04712d79d73f6fe",
+    "type": "switch",
+    "z": "50071d41aac5805d",
+    "name": "",
+    "property": "waitingGetAlcoholRequest",
+    "propertyType": "flow",
+    "rules": [
+      {
+        "t": "null"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 530,
+    "y": 280,
+    "wires": [["282a2915d43f46f0"], ["571cfbf3b2e8f630"]]
+  },
+  {
+    "id": "da6ed4a774f255b5",
+    "type": "change",
+    "z": "50071d41aac5805d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "alcoholCheck",
+        "pt": "msg",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 340,
+    "y": 280,
+    "wires": [["f04712d79d73f6fe"]]
+  },
+  {
+    "id": "479bb4a31a313162",
+    "type": "function",
+    "z": "50071d41aac5805d",
+    "name": "setWaitingRequest",
+    "func": "flow.set(\"waitingGetAlcoholRequest\", msg);\n\nreturn null;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 180,
+    "wires": [["a0fa4adb61ce53c9"]]
+  },
+  {
+    "id": "e82d2f732d4dc904",
+    "type": "http response",
+    "z": "50071d41aac5805d",
+    "name": "",
+    "statusCode": "",
+    "headers": {},
+    "x": 850,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "571cfbf3b2e8f630",
+    "type": "change",
+    "z": "50071d41aac5805d",
+    "name": "normal",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{\"alcoholCheck\": msg.alcoholCheck}",
+        "tot": "jsonata"
+      },
+      {
+        "t": "set",
+        "p": "statusCode",
+        "pt": "msg",
+        "to": "200",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 690,
+    "y": 320,
+    "wires": [["e82d2f732d4dc904"]]
+  },
+  {
+    "id": "282a2915d43f46f0",
+    "type": "change",
+    "z": "50071d41aac5805d",
+    "d": true,
+    "name": "error",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{\t        status: \"Not Found\",\t        message: \"アルコール検査判定が取得できませんでした\",\t    };",
+        "tot": "jsonata"
+      },
+      {
+        "t": "set",
+        "p": "statusCode",
+        "pt": "msg",
+        "to": "404",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 690,
+    "y": 280,
+    "wires": [["e82d2f732d4dc904"]]
   }
 ]
