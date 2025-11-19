@@ -18,7 +18,7 @@
   {
     "id": "050ef760976f2d6e",
     "type": "tab",
-    "label": "Flow 3",
+    "label": "employeeCheck",
     "disabled": false,
     "info": "",
     "env": []
@@ -415,8 +415,8 @@
     "type": "http in",
     "z": "050ef760976f2d6e",
     "name": "",
-    "url": "/borrowing",
-    "method": "post",
+    "url": "/employees",
+    "method": "get",
     "upload": false,
     "skipBodyParsing": false,
     "swaggerDoc": "",
@@ -488,7 +488,7 @@
     "type": "function",
     "z": "050ef760976f2d6e",
     "name": "matchDetermination",
-    "func": "const waitingMsg = flow.get(\"waitingRequest\");\n\nconst employeeList = msg.payload;\nconsole.log(employeeList)\n\nconst targetId = msg.searchId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n// --- 応答メッセージの作成 ---\nmsg.req = waitingMsg.req;\nmsg.res = waitingMsg.res;\n\nif (matchedData) {\n    msg.payload = matchedData;\n} else {\n    msg.payload = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\n// --- 後始末 ---\n// 応答済みになるので、待機変数を空にする\nflow.set(\"waitingRequest\", null);\n\nreturn msg;\n",
+    "func": "const waitingMsg = flow.get(\"waitingRequest\");\n\nconst employeeList = msg.payload;\nconsole.log(employeeList)\n\nconst targetId = msg.searchId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n// --- 応答メッセージの作成 ---\nmsg.req = waitingMsg.req;\nmsg.res = waitingMsg.res;\n\nif (matchedData) {\n    msg.payload = matchedData;\n} else {\n    msg.payload = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\n\nflow.set(\"waitingRequest\", null);\n\nreturn msg;\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
