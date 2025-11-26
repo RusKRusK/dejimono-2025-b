@@ -123,7 +123,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     hideModal();
     console.error("Process failed:", error);
 
-    // UIレンダリングのタイミングを確保するために少し待つ（任意）
     setTimeout(() => {
       alert("借用に失敗しました");
       window.location.href = "/";
