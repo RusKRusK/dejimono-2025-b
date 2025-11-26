@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Process failed:", error);
 
     setTimeout(() => {
-      alert("処理に失敗しました");
+      alert("借用処理に失敗しました");
       window.location.href = "/";
     }, 10);
   }
