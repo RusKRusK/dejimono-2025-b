@@ -112,9 +112,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         container.appendChild(lockerDiv);
       });
     } else {
-      // アルコールチェック失敗時などはここで停止
-      // 必要に応じて hideModal() やエラー表示を行ってください
-      console.log("Alcohol check status:", alcRes.status);
+      hideModal();
+      setTimeout(() => {
+        alert("アルコールチェックに失敗しました");
+        window.location.href = "/";
+      }, 10);
     }
   } catch (error) {
     // エラー発生時はモーダルを消してからアラートを出す
