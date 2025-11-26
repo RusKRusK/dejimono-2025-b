@@ -92,13 +92,20 @@ document.addEventListener("DOMContentLoaded", async () => {
           btn.appendChild(loader);
 
           try {
-            await fetch("/borrowing", {
+            const postRes = await fetch("/borrowing", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ locker_id: data.locker_id }),
             });
-            alert("借用に成功しました");
-            window.location.href = "/";
+            if (postRes.ok) {
+              alert("借用に成功しました");
+              window.location.href = "/";
+            } else {
+              // サーバーからエラーが返された場合
+              const errorMsg = (await postRes.text()) || "借用に失敗しました";
+              alert(errorMsg);
+              window.location.href = "/";
+            }
           } catch (postError) {
             console.error("Post error:", postError);
             window.location.href = "/";
