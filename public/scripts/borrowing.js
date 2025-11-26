@@ -1,28 +1,130 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // すべての借用ボタンを取得
-  const buttons = document.querySelectorAll(".borrow-btn");
+document.addEventListener("DOMContentLoaded", async () => {
+  const container = document.querySelector(".locker-container");
 
-  // 各ボタンにクリックイベントリスナーを追加
-  buttons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      // クリックされたボタンの親要素（.locker）を取得
-      const locker = event.target.closest(".locker");
+  // モーダル関連の要素取得
+  const modalOverlay = document.getElementById("modal-overlay");
+  const modalMessage = document.getElementById("modal-message");
 
-      // .locker要素から data-locker-id の値を取得
-      const lockerId = locker.dataset.lockerId;
+  // モーダル操作用関数
+  const showModal = (message) => {
+    modalMessage.textContent = message;
+    modalOverlay.classList.remove("hidden");
+  };
 
-      // TODO: ここに将来的に借用ロジックを追加します
+  const hideModal = () => {
+    modalOverlay.classList.add("hidden");
+  };
 
-      // 現状はコンソールにログを出力するだけ
-      console.log(`ロッカー ${lockerId} の借用ボタンがクリックされました。`);
+  try {
+    // ---------------------------------------------------
+    // 1. [GET] /employees
+    // ---------------------------------------------------
+    // モーダル表示: 社員証待ち
+    showModal("社員証をかざしてください");
 
-      // (参考) 借用中の状態をUIに反映させる例
-      // locker.classList.toggle('borrowed');
-      // if (locker.classList.contains('borrowed')) {
-      //     event.target.textContent = '返却';
-      // } else {
-      //     event.target.textContent = '借用';
-      // }
-    });
-  });
+    const empRes = await fetch("/employees");
+
+    // 1が200以外の場合
+    if (empRes.status !== 200) {
+      throw new Error("Employee verification failed");
+    }
+    alert("社員確認に成功しました");
+
+    // ---------------------------------------------------
+    // 2. [GET] /alcohol/check
+    // ---------------------------------------------------
+    // モーダル更新: アルコールチェック待ち
+    showModal("アルコールチェックをしてください");
+
+    const alcRes = await fetch("/alcohol/check");
+
+    // 2が200の場合: ロッカー取得へ進む
+    if (alcRes.status === 200) {
+      // 処理が進むので一旦モーダルを隠す（あるいは「読込中」などにしてもOK）
+      alert("アルコール確認に成功しました");
+      hideModal();
+
+      // ---------------------------------------------------
+      // 3. [GET] /lockers
+      // ---------------------------------------------------
+      const lockerRes = await fetch("/lockers");
+
+      if (!lockerRes.ok) {
+        throw new Error("Failed to fetch locker data");
+      }
+
+      // 4. ロッカーデータの描画
+      const lockers = await lockerRes.json();
+
+      container.innerHTML = "";
+
+      lockers.forEach((data) => {
+        const lockerDiv = document.createElement("div");
+        lockerDiv.className = "locker";
+        lockerDiv.dataset.lockerId = data.locker_id;
+
+        const numDiv = document.createElement("div");
+        numDiv.className = "locker-number";
+        numDiv.textContent = data.locker_id;
+
+        const btn = document.createElement("button");
+        btn.className = "borrow-btn";
+        if (data.status === "occupation") {
+          btn.textContent = "使用中";
+          btn.disabled = true;
+          lockerDiv.classList.add("occupied");
+        } else {
+          btn.textContent = "借用";
+          btn.disabled = false;
+        }
+
+        // ---------------------------------------------------
+        // 5. ボタンクリック時の処理 ([POST] /borrowing)
+        // ---------------------------------------------------
+        btn.addEventListener("click", async () => {
+          const allButtons = document.querySelectorAll(".borrow-btn");
+          allButtons.forEach((b) => (b.disabled = true));
+
+          // 2. クリックされたボタンをローディング表示にする
+          // 元のテキストを消してスピナーを表示
+          btn.textContent = "";
+          const loader = document.createElement("div");
+          loader.className = "loader";
+          btn.appendChild(loader);
+
+          try {
+            await fetch("/borrowing", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ locker_id: data.locker_id }),
+            });
+            alert("借用に成功しました");
+            window.location.href = "/";
+          } catch (postError) {
+            console.error("Post error:", postError);
+            // エラー時もリダイレクトするため、ボタンを戻す処理は省略
+            window.location.href = "/";
+          }
+        });
+
+        lockerDiv.appendChild(numDiv);
+        lockerDiv.appendChild(btn);
+        container.appendChild(lockerDiv);
+      });
+    } else {
+      // アルコールチェック失敗時などはここで停止
+      // 必要に応じて hideModal() やエラー表示を行ってください
+      console.log("Alcohol check status:", alcRes.status);
+    }
+  } catch (error) {
+    // エラー発生時はモーダルを消してからアラートを出す
+    hideModal();
+    console.error("Process failed:", error);
+
+    // UIレンダリングのタイミングを確保するために少し待つ（任意）
+    setTimeout(() => {
+      alert("借用に失敗しました");
+      window.location.href = "/";
+    }, 10);
+  }
 });
