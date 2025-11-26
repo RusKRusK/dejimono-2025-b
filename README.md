@@ -17,3 +17,8 @@ cp employee.csv.copy employee.csv
 ```shell
 npm start
 ```
+
+## フォーマッタのかけ方
+```shell
+npm run fmt
+```
