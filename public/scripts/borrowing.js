@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const empRes = await fetch("/employees");
     const employeeData = await empRes.json();
 
-    // 1が200以外の場合
     if (empRes.status !== 200) {
       throw new Error("Employee verification failed");
     }
@@ -39,9 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const alcRes = await fetch("/alcohol/check");
 
-    // 2が200の場合: ロッカー取得へ進む
     if (alcRes.status === 200) {
-      // 処理が進むので一旦モーダルを隠す（あるいは「読込中」などにしてもOK）
       alert("アルコール確認に成功しました");
       hideModal();
 
@@ -54,7 +51,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         throw new Error("Failed to fetch locker data");
       }
 
-      // 4. ロッカーデータの描画
       const lockers = await lockerRes.json();
 
       container.innerHTML = "";
