@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     showModal("社員証をかざしてください");
 
     const empRes = await fetch("/employees");
+    const employeeData = await empRes.json();
 
     // 1が200以外の場合
     if (empRes.status !== 200) {
@@ -95,7 +96,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             const postRes = await fetch("/borrowing", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ locker_id: data.locker_id }),
+              body: JSON.stringify({
+                employee_id: employeeData.employee_id,
+                employee_name: employeeData.employee_name,
+                locker_id: data.locker_id,
+              }),
             });
             if (postRes.ok) {
               alert("借用に成功しました");
@@ -108,6 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
           } catch (postError) {
             console.error("Post error:", postError);
+            alert("借用処理に失敗しました");
             window.location.href = "/";
           }
         });
