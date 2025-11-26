@@ -1,0 +1,135 @@
+body {
+  display: block;
+  justify-content: normal;
+  align-items: normal;
+  height: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.locker-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.locker {
+  width: 150px;
+  height: 150px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.locker:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+}
+
+.locker-number {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #555;
+}
+
+.borrow-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+
+  background-color: #007bff;
+}
+
+.borrow-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+.borrow-btn:active {
+  transform: translateY(0);
+}
+
+.locker.borrowed .borrow-btn {
+  background-color: #dc3545;
+  cursor: not-allowed;
+}
+
+.locker.borrowed .borrow-btn:hover {
+  opacity: 1;
+  transform: none;
+  background-color: #a71d2a;
+}
+
+.borrow-btn:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  border: 1px solid #999999;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.borrow-btn:disabled:hover {
+  background-color: #cccccc;
+  transform: none;
+  box-shadow: none;
+}
+
+.locker.occupied:hover {
+  transform: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* モーダルの背景（半透明の黒） */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* 背景を暗くする */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 最前面に表示 */
+}
+
+/* 非表示用のクラス */
+.hidden {
+  display: none !important;
+}
+
+/* モーダルの白い箱 */
+.modal-content {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+}

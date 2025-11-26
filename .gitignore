@@ -2,3 +2,4 @@ server
 *.out
 node_modules
 *.backup
+*.csv
