@@ -446,24 +446,7 @@
     "swaggerDoc": "",
     "x": 220,
     "y": 120,
-    "wires": [["f97346a22108dd90"]]
-  },
-  {
-    "id": "a8327bfb85c0a840",
-    "type": "debug",
-    "z": "050ef760976f2d6e",
-    "name": "debug 3",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 760,
-    "y": 120,
-    "wires": []
+    "wires": [["f97346a22108dd90", "bbeeb41921998f77"]]
   },
   {
     "id": "739d9fcd3d2e8544",
@@ -540,7 +523,7 @@
     "libs": [],
     "x": 510,
     "y": 120,
-    "wires": [["a8327bfb85c0a840"]]
+    "wires": [[]]
   },
   {
     "id": "3ee65ab17649973f",
@@ -614,6 +597,41 @@
     "wires": [["3ee65ab17649973f"]]
   },
   {
+    "id": "bbeeb41921998f77",
+    "type": "mqtt out",
+    "z": "050ef760976f2d6e",
+    "name": "m5/request/rfid",
+    "topic": "m5/request/rfid",
+    "qos": "1",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "f1738451fe9af7df",
+    "x": 520,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "b5a8c474efcde37c",
+    "type": "mqtt in",
+    "z": "050ef760976f2d6e",
+    "name": "",
+    "topic": "m5/response/rfid",
+    "qos": "1",
+    "datatype": "utf8",
+    "broker": "f1738451fe9af7df",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 200,
+    "y": 280,
+    "wires": [["739d9fcd3d2e8544"]]
+  },
+  {
     "id": "63cb31f9f15dfcb0",
     "type": "inject",
     "z": "50071d41aac5805d",
@@ -646,24 +664,7 @@
     "swaggerDoc": "",
     "x": 150,
     "y": 180,
-    "wires": [["479bb4a31a313162"]]
-  },
-  {
-    "id": "a0fa4adb61ce53c9",
-    "type": "debug",
-    "z": "50071d41aac5805d",
-    "name": "debug 4",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 700,
-    "y": 180,
-    "wires": []
+    "wires": [["479bb4a31a313162", "d2944f77d59cb361"]]
   },
   {
     "id": "f04712d79d73f6fe",
@@ -724,7 +725,7 @@
     "libs": [],
     "x": 430,
     "y": 180,
-    "wires": [["a0fa4adb61ce53c9"]]
+    "wires": [[]]
   },
   {
     "id": "e82d2f732d4dc904",
@@ -733,7 +734,7 @@
     "name": "",
     "statusCode": "",
     "headers": {},
-    "x": 1090,
+    "x": 1230,
     "y": 280,
     "wires": []
   },
@@ -763,7 +764,7 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 930,
+    "x": 1070,
     "y": 320,
     "wires": [["e82d2f732d4dc904"]]
   },
@@ -793,7 +794,7 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 930,
+    "x": 1070,
     "y": 280,
     "wires": [["e82d2f732d4dc904"]]
   },
@@ -826,6 +827,41 @@
     "x": 590,
     "y": 280,
     "wires": [["f04712d79d73f6fe"]]
+  },
+  {
+    "id": "d2944f77d59cb361",
+    "type": "mqtt out",
+    "z": "50071d41aac5805d",
+    "name": "m5/request/alcohol",
+    "topic": "m5/request/alcohol",
+    "qos": "1",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "f1738451fe9af7df",
+    "x": 390,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "04f4167634741e08",
+    "type": "mqtt in",
+    "z": "50071d41aac5805d",
+    "name": "",
+    "topic": "m5/response/alcohol",
+    "qos": "1",
+    "datatype": "utf8",
+    "broker": "f1738451fe9af7df",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 130,
+    "y": 360,
+    "wires": [["da6ed4a774f255b5"]]
   },
   {
     "id": "6fb540cd2f75ddc6",
@@ -900,24 +936,7 @@
     "swaggerDoc": "",
     "x": 220,
     "y": 140,
-    "wires": [["6191e39823b693d3"]]
-  },
-  {
-    "id": "def132f472b2dbb1",
-    "type": "debug",
-    "z": "ed42732c80150553",
-    "name": "debug 5",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 840,
-    "y": 140,
-    "wires": []
+    "wires": [["6191e39823b693d3", "3c2a6aeec8ba4875"]]
   },
   {
     "id": "6191e39823b693d3",
@@ -933,7 +952,7 @@
     "libs": [],
     "x": 540,
     "y": 140,
-    "wires": [["def132f472b2dbb1"]]
+    "wires": [[]]
   },
   {
     "id": "98c5d4b4ab243ade",
@@ -1239,5 +1258,40 @@
     "x": 1190,
     "y": 520,
     "wires": [["77588db6923faeb1"]]
+  },
+  {
+    "id": "3c2a6aeec8ba4875",
+    "type": "mqtt out",
+    "z": "ed42732c80150553",
+    "name": "",
+    "topic": "m5/request/locker",
+    "qos": "1",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "f1738451fe9af7df",
+    "x": 530,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "9ffe751cce4a97a2",
+    "type": "mqtt in",
+    "z": "ed42732c80150553",
+    "name": "",
+    "topic": "m5/response/locker",
+    "qos": "1",
+    "datatype": "utf8",
+    "broker": "f1738451fe9af7df",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 210,
+    "y": 220,
+    "wires": [["8421e9aa06ab43bd"]]
   }
 ]
