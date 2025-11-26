@@ -85,8 +85,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           const allButtons = document.querySelectorAll(".borrow-btn");
           allButtons.forEach((b) => (b.disabled = true));
 
-          // 2. クリックされたボタンをローディング表示にする
-          // 元のテキストを消してスピナーを表示
+          // クリックされたボタンをローディング表示にする
           btn.textContent = "";
           const loader = document.createElement("div");
           loader.className = "loader";
@@ -102,7 +101,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             window.location.href = "/";
           } catch (postError) {
             console.error("Post error:", postError);
-            // エラー時もリダイレクトするため、ボタンを戻す処理は省略
             window.location.href = "/";
           }
         });
