@@ -169,47 +169,6 @@
     "wires": []
   },
   {
-    "id": "4f961a4f509e519c",
-    "type": "http in",
-    "z": "7d2f5d9e383bdab4",
-    "name": "borrowing_in",
-    "url": "/return",
-    "method": "get",
-    "upload": false,
-    "skipBodyParsing": false,
-    "swaggerDoc": "",
-    "x": 190,
-    "y": 480,
-    "wires": [["da102cbc7ffc2383"]]
-  },
-  {
-    "id": "da102cbc7ffc2383",
-    "type": "file in",
-    "z": "7d2f5d9e383bdab4",
-    "name": "return.html_read",
-    "filename": "public/pages/return.html",
-    "filenameType": "str",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "allProps": false,
-    "x": 400,
-    "y": 480,
-    "wires": [["c4110f756f096e5e"]]
-  },
-  {
-    "id": "c4110f756f096e5e",
-    "type": "http response",
-    "z": "7d2f5d9e383bdab4",
-    "name": "return_response",
-    "statusCode": "200",
-    "headers": {},
-    "x": 660,
-    "y": 480,
-    "wires": []
-  },
-  {
     "id": "7f145836094e5887",
     "type": "mqtt out",
     "z": "bd06020514c0176d",
