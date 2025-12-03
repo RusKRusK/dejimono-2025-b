@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       hideModal();
       alert("返却が完了しました");
 
-      window.location.reload();
+      window.location.href = "/";
     } catch (error) {
       console.error(error);
       hideModal();
