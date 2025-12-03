@@ -1331,7 +1331,7 @@
     "type": "function",
     "z": "d3c6b2c525f179e1",
     "name": "updateLockerStatus",
-    "func": "const lockerList = msg.payload;\n\nconst targetId = msg.searchLockerId;\n\n// --- 検索処理 ---\nconst matchedData = lockerList.find(row => String(row.employee_borrowing_id) === String(msg.req.params.employeeId));\n\n\nif (matchedData) {\n    matchedData.status = \"vacancy\";\n    matchedData.employee_borrowing_id = \"\";\n    msg.lockerId = matchedData.locker_id;\n    msg.payload = lockerList;\n}\nelse {\n    msg.statusCode = 404;\n}\n\nreturn msg;\n",
+    "func": "const lockerList = msg.payload;\n\n// --- 検索処理 ---\nconst matchedData = lockerList.find(row => String(row.employee_borrowing_id) === String(msg.req.params.employeeId));\n\n\nif (matchedData) {\n    matchedData.status = \"vacancy\";\n    matchedData.employee_borrowing_id = \"\";\n    msg.lockerId = matchedData.locker_id;\n    msg.payload = lockerList;\n}\nelse {\n    msg.statusCode = 404;\n}\n\nreturn msg;\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
