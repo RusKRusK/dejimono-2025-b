@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       hideModal();
       setTimeout(() => {
         alert("エラーが発生しました: " + error.message);
+        window.location.href = "/";
       }, 100);
     }
   });

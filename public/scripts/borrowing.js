@@ -133,6 +133,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     setTimeout(() => {
       alert("借用処理に失敗しました");
       window.location.href = "/";
-    }, 10);
+    }, 100);
   }
 });
