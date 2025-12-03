@@ -56,6 +56,14 @@
     "env": []
   },
   {
+    "id": "2aeb66193b434c4b",
+    "type": "tab",
+    "label": "csvDownload",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
     "id": "f1738451fe9af7df",
     "type": "mqtt-broker",
     "name": "",
@@ -1707,5 +1715,69 @@
     "x": 290,
     "y": 220,
     "wires": [["8d98dab15f077ef3"]]
+  },
+  {
+    "id": "57e27369e08dcfb5",
+    "type": "file in",
+    "z": "2aeb66193b434c4b",
+    "name": "readLogs",
+    "filename": "log.csv",
+    "filenameType": "str",
+    "format": "utf8",
+    "chunk": false,
+    "sendError": false,
+    "encoding": "none",
+    "allProps": false,
+    "x": 480,
+    "y": 160,
+    "wires": [["94169b02dd1f8a47"]]
+  },
+  {
+    "id": "a2cc7b5e5489b7d7",
+    "type": "http in",
+    "z": "2aeb66193b434c4b",
+    "name": "",
+    "url": "/download/logs",
+    "method": "get",
+    "upload": false,
+    "skipBodyParsing": false,
+    "swaggerDoc": "",
+    "x": 270,
+    "y": 160,
+    "wires": [["57e27369e08dcfb5"]]
+  },
+  {
+    "id": "bfcacad6ae99234b",
+    "type": "http response",
+    "z": "2aeb66193b434c4b",
+    "name": "",
+    "statusCode": "",
+    "headers": {},
+    "x": 870,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "94169b02dd1f8a47",
+    "type": "change",
+    "z": "2aeb66193b434c4b",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "headers",
+        "pt": "msg",
+        "to": "{     \"Content-Type\": \"text/csv; charset=utf-8\",     \"Content-Disposition\": \"attachment; filename=\\\"log.csv\\\"\" }",
+        "tot": "jsonata"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 680,
+    "y": 160,
+    "wires": [["bfcacad6ae99234b"]]
   }
 ]
