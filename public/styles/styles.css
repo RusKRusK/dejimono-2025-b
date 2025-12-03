@@ -104,3 +104,34 @@ h1 {
     transform: rotate(360deg);
   }
 }
+
+/* モーダルの背景（半透明の黒） */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* 背景を暗くする */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 最前面に表示 */
+}
+
+/* 非表示用のクラス */
+.hidden {
+  display: none !important;
+}
+
+/* モーダルの白い箱 */
+.modal-content {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+}
