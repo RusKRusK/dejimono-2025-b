@@ -140,20 +140,20 @@ h1 {
 /* ダウンロードアイコンのスタイル */
 .download-icon {
   position: absolute;
-  top: 15px; /* 上からの距離 */
-  right: 15px; /* 右からの距離 */
+  top: 15px;
+  right: 15px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 40px; /* 正方形の幅 */
-  height: 40px; /* 正方形の高さ */
+  width: 40px;
+  height: 40px;
 
-  background-color: #f0f0f0; /* 背景色（薄いグレー） */
-  color: #555; /* アイコンの色 */
-  border-radius: 8px; /* 角丸（完全な四角なら0px） */
-  text-decoration: none; /* 下線を消す */
+  background-color: #f0f0f0;
+  color: #555;
+  border-radius: 8px;
+  text-decoration: none;
   transition: background-color 0.2s;
   cursor: pointer;
 }
