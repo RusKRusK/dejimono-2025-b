@@ -1063,7 +1063,7 @@
     "hdrout": "none",
     "multi": "mult",
     "ret": "\\n",
-    "temp": "locker_id,status, employee_borrowing_id",
+    "temp": "locker_id,status,employee_borrowing_id",
     "skip": "0",
     "strings": true,
     "include_empty_strings": "",
