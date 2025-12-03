@@ -11,6 +11,7 @@ body {
 }
 
 .key-management-container {
+  position: relative;
   background-color: #ffffff;
   padding: 40px 50px;
   border-radius: 12px;
@@ -134,4 +135,31 @@ h1 {
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   min-width: 300px;
+}
+
+/* ダウンロードアイコンのスタイル */
+.download-icon {
+  position: absolute;
+  top: 15px; /* 上からの距離 */
+  right: 15px; /* 右からの距離 */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px; /* 正方形の幅 */
+  height: 40px; /* 正方形の高さ */
+
+  background-color: #f0f0f0; /* 背景色（薄いグレー） */
+  color: #555; /* アイコンの色 */
+  border-radius: 8px; /* 角丸（完全な四角なら0px） */
+  text-decoration: none; /* 下線を消す */
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+/* ホバー時の見た目 */
+.download-icon:hover {
+  background-color: #e0e0e0;
+  color: #333;
 }
