@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showModal("社員証をかざしてください");
 
       // 社員確認リクエスト ([GET] /employees)
-      const empRes = await fetch("/employees");
+      const empRes = await fetch("/return/employees");
 
       if (empRes.status !== 200) {
         throw new Error("社員確認に失敗しました");

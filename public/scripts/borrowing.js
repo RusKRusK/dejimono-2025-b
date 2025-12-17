@@ -22,11 +22,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     // モーダル表示: 社員証待ち
     showModal("社員証をかざしてください");
 
-    const empRes = await fetch("/employees", { cache: "no-store" });
+    const empRes = await fetch("/borrowing/employees", { cache: "no-store" });
     const employeeData = await empRes.json();
 
     if (empRes.status !== 200) {
-      throw new Error("Employee verification failed");
+      throw new Error(employeeData.message);
     }
     await showToastAndWait("社員確認に成功しました");
 
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const lockerRes = await fetch("/lockers");
 
       if (!lockerRes.ok) {
-        throw new Error("Failed to fetch locker data");
+        throw new Error("ロッカーデータの取得に失敗しました");
       }
 
       const lockers = await lockerRes.json();
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Process failed:", error);
 
     setTimeout(async () => {
-      await showToastAndWait("借用処理に失敗しました", true);
+      await showToastAndWait(error.message);
       hideModal();
       window.location.href = "/";
     }, 100);
