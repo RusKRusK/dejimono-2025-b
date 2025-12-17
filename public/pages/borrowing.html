@@ -1,30 +1,28 @@
 <!doctype html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <link rel="stylesheet" href="../styles/locker.css" />
+    <title>鍵管理システム</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../styles/styles.css" />
-  <link rel="stylesheet" href="../styles/locker.css" />
-  <title>鍵管理システム</title>
-</head>
-
-<body>
-  <div class="header-nav">
-    <a href="/" class="home-btn">← ホームに戻る</a>
-  </div>
-  <h1>鍵管理システム - ロッカー選択</h1>
-
-  <div class="locker-container"></div>
-
-  <div id="modal-overlay" class="modal-overlay hidden">
-    <div class="modal-content">
-      <p id="modal-message">メッセージ</p>
+  <body>
+    <div class="header-nav">
+      <a href="/" class="home-btn">← ホームに戻る</a>
     </div>
-  </div>
+    <h1>鍵管理システム - ロッカー選択</h1>
 
-  <script src="../scripts/toast-utils.js"></script>
-  <script src="../scripts/borrowing.js"></script>
-</body>
+    <div class="locker-container"></div>
 
+    <div id="modal-overlay" class="modal-overlay hidden">
+      <div class="modal-content">
+        <p id="modal-message">メッセージ</p>
+      </div>
+    </div>
+
+    <script src="../scripts/toast-utils.js"></script>
+    <script src="../scripts/borrowing.js"></script>
+  </body>
 </html>
