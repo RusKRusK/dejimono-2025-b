@@ -48,14 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 完了後の処理
       hideModal();
-      alert("返却が完了しました");
+      await showToastAndWait("返却が完了しました");
 
       window.location.href = "/";
     } catch (error) {
       console.error(error);
       hideModal();
-      setTimeout(() => {
-        alert("エラーが発生しました: " + error.message);
+      setTimeout(async () => {
+        await showToastAndWait("エラーが発生しました: " + error.message);
         window.location.href = "/";
       }, 100);
     }

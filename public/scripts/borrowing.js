@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (empRes.status !== 200) {
       throw new Error("Employee verification failed");
     }
-    alert("社員確認に成功しました");
+    await showToastAndWait("社員確認に成功しました");
 
     // ---------------------------------------------------
     // 2. [GET] /alcohol/check
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const alcRes = await fetch("/alcohol/check");
 
     if (alcRes.status === 200) {
-      alert("アルコール確認に成功しました");
+      await showToastAndWait("アルコール確認に成功しました");
       hideModal();
 
       // ---------------------------------------------------
@@ -99,17 +99,17 @@ document.addEventListener("DOMContentLoaded", async () => {
               }),
             });
             if (postRes.ok) {
-              alert("借用に成功しました");
+              await showToastAndWait("借用に成功しました");
               window.location.href = "/";
             } else {
               // サーバーからエラーが返された場合
               const errorMsg = (await postRes.text()) || "借用に失敗しました";
-              alert(errorMsg);
+              await showToastAndWait(errorMsg);
               window.location.href = "/";
             }
           } catch (postError) {
             console.error("Post error:", postError);
-            alert("借用処理に失敗しました");
+            await showToastAndWait("借用処理に失敗しました");
             window.location.href = "/";
           }
         });
@@ -120,8 +120,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     } else {
       hideModal();
-      setTimeout(() => {
-        alert("アルコールチェックに失敗しました");
+      setTimeout(async () => {
+        await showToastAndWait("アルコールチェックに失敗しました");
         window.location.href = "/";
       }, 10);
     }
@@ -130,8 +130,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     hideModal();
     console.error("Process failed:", error);
 
-    setTimeout(() => {
-      alert("借用処理に失敗しました");
+    setTimeout(async () => {
+      await showToastAndWait("借用処理に失敗しました");
       window.location.href = "/";
     }, 100);
   }
