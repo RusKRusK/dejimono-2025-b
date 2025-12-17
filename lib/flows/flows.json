@@ -1524,9 +1524,9 @@
     "createDir": false,
     "overwriteFile": "false",
     "encoding": "none",
-    "x": 640,
-    "y": 460,
-    "wires": [["883ce178b0330f1e", "7c1c4916c5d65308"]]
+    "x": 600,
+    "y": 800,
+    "wires": [["fcd273a7020f8066"]]
   },
   {
     "id": "6170a9b7dd1f6a47",
@@ -1540,8 +1540,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 280,
-    "y": 460,
+    "x": 240,
+    "y": 800,
     "wires": [["92454275a2b0f81f"]]
   },
   {
@@ -1560,8 +1560,8 @@
     "strings": true,
     "include_empty_strings": false,
     "include_null_values": "",
-    "x": 490,
-    "y": 460,
+    "x": 450,
+    "y": 800,
     "wires": [["613e223b6e0b1f93"]]
   },
   {
@@ -1569,7 +1569,7 @@
     "type": "function",
     "z": "d3c6b2c525f179e1",
     "name": "updateLockerStatus",
-    "func": "const lockerList = msg.payload;\n\n// --- 検索処理 ---\nconst matchedData = lockerList.find(row => String(row.employee_borrowing_id) === String(msg.req.params.employeeId));\n\n\nif (matchedData) {\n    matchedData.status = \"vacancy\";\n    matchedData.employee_borrowing_id = \"\";\n    msg.lockerId = matchedData.locker_id;\n    msg.payload = lockerList;\n}\nelse {\n    msg.statusCode = 404;\n}\n\nreturn msg;\n",
+    "func": "const lockerList = msg.payload;\n\n// --- 検索処理 ---\nconst matchedData = lockerList.find(row => String(row.employee_borrowing_id) === String(msg.req.params.employeeId));\n\n\nif (matchedData) {\n    matchedData.status = \"vacancy\";\n    matchedData.employee_borrowing_id = \"\";\n    msg.lockerId = matchedData.locker_id;\n    msg.payload = lockerList;\n}\nelse {\n    msg.statusCode = 403;\n}\n\nreturn msg;\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -1627,8 +1627,8 @@
     "createDir": false,
     "overwriteFile": "true",
     "encoding": "none",
-    "x": 1170,
-    "y": 340,
+    "x": 1130,
+    "y": 680,
     "wires": [["6170a9b7dd1f6a47"]]
   },
   {
@@ -1647,8 +1647,8 @@
     "strings": true,
     "include_empty_strings": false,
     "include_null_values": "",
-    "x": 970,
-    "y": 340,
+    "x": 930,
+    "y": 680,
     "wires": [["44dcb5c61d37d0d2"]]
   },
   {
@@ -1659,7 +1659,7 @@
     "statusCode": "",
     "headers": {},
     "x": 1210,
-    "y": 700,
+    "y": 820,
     "wires": []
   },
   {
@@ -1688,8 +1688,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 970,
-    "y": 680,
+    "x": 910,
+    "y": 800,
     "wires": [["fd9413c99d1a6f04"]]
   },
   {
@@ -1794,8 +1794,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1150,
-    "y": 560,
+    "x": 1190,
+    "y": 500,
     "wires": [["fd9413c99d1a6f04"]]
   },
   {
@@ -1808,7 +1808,7 @@
     "rules": [
       {
         "t": "eq",
-        "v": "404",
+        "v": "403",
         "vt": "str"
       },
       {
@@ -1820,7 +1820,7 @@
     "outputs": 2,
     "x": 790,
     "y": 340,
-    "wires": [["fcb56a36ea02d179"], ["b33b7c6240d49d7d"]]
+    "wires": [["b43368d627580408"], ["883ce178b0330f1e", "7c1c4916c5d65308"]]
   },
   {
     "id": "7c1c4916c5d65308",
@@ -1834,8 +1834,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 770,
-    "y": 520,
+    "x": 1170,
+    "y": 400,
     "wires": [[]]
   },
   {
@@ -1852,8 +1852,8 @@
     "correl": "",
     "expiry": "",
     "broker": "f1738451fe9af7df",
-    "x": 870,
-    "y": 460,
+    "x": 1130,
+    "y": 340,
     "wires": []
   },
   {
@@ -1875,6 +1875,20 @@
         "pt": "msg",
         "to": "waitingReturningKeyRequest.res",
         "tot": "flow"
+      },
+      {
+        "t": "set",
+        "p": "employeeData",
+        "pt": "msg",
+        "to": "waitingReturningKeyRequest.employeeData",
+        "tot": "flow"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "waitingReturningKeyRequest.payload",
+        "tot": "flow"
       }
     ],
     "action": "",
@@ -1884,7 +1898,7 @@
     "reg": false,
     "x": 690,
     "y": 660,
-    "wires": [["fcd273a7020f8066"]]
+    "wires": [["b33b7c6240d49d7d"]]
   },
   {
     "id": "1660ef8f50e74237",
@@ -1945,6 +1959,36 @@
     "x": 210,
     "y": 600,
     "wires": [["8d98dab15f077ef3"]]
+  },
+  {
+    "id": "b43368d627580408",
+    "type": "change",
+    "z": "d3c6b2c525f179e1",
+    "name": "noLockerError",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{\"status\": \"Forbidden\",\"message\": \"返却対象のロッカーがありません\"}",
+        "tot": "jsonata"
+      },
+      {
+        "t": "set",
+        "p": "statusCode",
+        "pt": "msg",
+        "to": "403",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1160,
+    "y": 560,
+    "wires": [["fd9413c99d1a6f04"]]
   },
   {
     "id": "57e27369e08dcfb5",
