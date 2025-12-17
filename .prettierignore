@@ -1,5 +1,5 @@
 *.md
 *.backup
 *.csv
-*.json
+# *.json
 node_modules/
