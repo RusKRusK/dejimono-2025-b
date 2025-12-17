@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const employeeData = await empRes.json();
 
     if (empRes.status !== 200) {
-      throw new Error("Employee verification failed");
+      throw new Error(employeeData.message);
     }
     alert("社員確認に成功しました");
 
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Process failed:", error);
 
     setTimeout(() => {
-      alert("借用処理に失敗しました");
+      alert(error.message);
       window.location.href = "/";
     }, 100);
   }
