@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         lockerDiv.appendChild(btn);
         container.appendChild(lockerDiv);
       });
-    } else if (alcRes.status === 405) {
+    } else if (alcRes.status === 403) {
       hideModal();
       setTimeout(() => {
         alert("アルコールを検知しました。社用車を借用することはできません。");
