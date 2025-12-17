@@ -42,20 +42,22 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "POST",
       });
 
-      if (!returnRes.ok) {
+      if (returnRes.status === 403) {
+        throw new Error("返却対象のロッカーがありません");
+      } else if (!returnRes.ok) {
         throw new Error("返却処理に失敗しました");
       }
 
       // 完了後の処理
+      await showToastAndWait("返却が完了しました");
       hideModal();
-      alert("返却が完了しました");
 
       window.location.href = "/";
     } catch (error) {
       console.error(error);
       hideModal();
-      setTimeout(() => {
-        alert("エラーが発生しました: " + error.message);
+      setTimeout(async () => {
+        await showToastAndWait("エラー: " + error.message, true);
         window.location.href = "/";
       }, 100);
     }
