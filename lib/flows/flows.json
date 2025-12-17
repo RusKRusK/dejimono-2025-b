@@ -2028,12 +2028,12 @@
         "type": "http in",
         "z": "cf0d353bb582c2a4",
         "name": "",
-        "url": "/employees",
+        "url": "/return/employees",
         "method": "get",
         "upload": false,
         "skipBodyParsing": false,
         "swaggerDoc": "",
-        "x": 180,
+        "x": 200,
         "y": 140,
         "wires": [
             [
@@ -2103,7 +2103,7 @@
         "type": "function",
         "z": "cf0d353bb582c2a4",
         "name": "matchDetermination",
-        "func": "const waitingMsg = flow.get(\"waitingGetEmployeeRequest\");\n\nconst employeeList = msg.payload;\n\nconst targetId = msg.searchId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n// --- 応答メッセージの作成 ---\nmsg.req = waitingMsg.req;\nmsg.res = waitingMsg.res;\n\nif (matchedData) {\n    msg.employeeData = matchedData;\n} else {\n    msg.payload = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\n\nflow.set(\"waitingGetEmployeeRequest\", null);\n\nreturn msg;\n",
+        "func": "const waitingMsg = flow.get(\"waitingGetEmployeeRequest\");\n\nconst employeeList = msg.payload;\n\nconst targetId = msg.searchId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n// --- 応答メッセージの作成 ---\nmsg.req = waitingMsg.req;\nmsg.res = waitingMsg.res;\n\nif (matchedData) {\n    msg.payload = matchedData;\n} else {\n    msg.payload = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\n\nflow.set(\"waitingGetEmployeeRequest\", null);\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
