@@ -1,0 +1,4 @@
+*.md
+*.backup
+*.csv
+node_modules/
