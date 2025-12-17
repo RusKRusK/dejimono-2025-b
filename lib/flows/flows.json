@@ -1642,7 +1642,7 @@
     "hdrout": "none",
     "multi": "one",
     "ret": "\\n",
-    "temp": "",
+    "temp": "locker_id,status,employee_borrowing_id",
     "skip": "0",
     "strings": true,
     "include_empty_strings": false,
@@ -1888,6 +1888,13 @@
         "p": "payload",
         "pt": "msg",
         "to": "waitingReturningKeyRequest.payload",
+        "tot": "flow"
+      },
+      {
+        "t": "set",
+        "p": "lockerId",
+        "pt": "msg",
+        "to": "waitingReturningKeyRequest.lockerId",
         "tot": "flow"
       }
     ],
