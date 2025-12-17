@@ -55,9 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(error);
       setTimeout(async () => {
         await showToastAndWait("エラーが発生しました: " + error.message, true);
+        hideModal();
         window.location.href = "/";
       }, 100);
-      hideModal();
     }
   });
 });

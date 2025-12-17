@@ -121,17 +121,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
       setTimeout(async () => {
         await showToastAndWait("アルコールチェックに失敗しました", true);
+        hideModal();
         window.location.href = "/";
       }, 10);
-      hideModal();
     }
   } catch (error) {
     console.error("Process failed:", error);
 
     setTimeout(async () => {
       await showToastAndWait("借用処理に失敗しました", true);
+      hideModal();
       window.location.href = "/";
     }, 100);
-    hideModal();
   }
 });
