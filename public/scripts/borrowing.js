@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const lockerRes = await fetch("/lockers");
 
       if (!lockerRes.ok) {
-        throw new Error("Failed to fetch locker data");
+        throw new Error("ロッカーデータの取得に失敗しました");
       }
 
       const lockers = await lockerRes.json();
