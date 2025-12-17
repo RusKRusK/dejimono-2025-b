@@ -632,12 +632,12 @@
     "type": "http in",
     "z": "50071d41aac5805d",
     "name": "",
-    "url": "/alcohol/check",
+    "url": "/alcohol/check/:employeeId",
     "method": "get",
     "upload": false,
     "skipBodyParsing": false,
     "swaggerDoc": "",
-    "x": 150,
+    "x": 190,
     "y": 180,
     "wires": [["479bb4a31a313162", "d2944f77d59cb361"]]
   },
@@ -646,11 +646,11 @@
     "type": "switch",
     "z": "50071d41aac5805d",
     "name": "",
-    "property": "waitingGetAlcoholRequest",
-    "propertyType": "flow",
+    "property": "isNormal",
+    "propertyType": "msg",
     "rules": [
       {
-        "t": "null"
+        "t": "true"
       },
       {
         "t": "else"
@@ -659,9 +659,9 @@
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 770,
+    "x": 930,
     "y": 280,
-    "wires": [["282a2915d43f46f0"], ["571cfbf3b2e8f630"]]
+    "wires": [["571cfbf3b2e8f630"], ["bc5845f2e862e0fc"]]
   },
   {
     "id": "da6ed4a774f255b5",
@@ -671,7 +671,7 @@
     "rules": [
       {
         "t": "set",
-        "p": "alcoholCheck",
+        "p": "isNormal",
         "pt": "msg",
         "to": "payload",
         "tot": "msg"
@@ -682,9 +682,9 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 340,
+    "x": 330,
     "y": 280,
-    "wires": [["705bcc949c0e7d01"]]
+    "wires": [["c49a37e19345f089"]]
   },
   {
     "id": "479bb4a31a313162",
@@ -698,7 +698,7 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 430,
+    "x": 550,
     "y": 180,
     "wires": [[]]
   },
@@ -709,7 +709,7 @@
     "name": "",
     "statusCode": "",
     "headers": {},
-    "x": 1230,
+    "x": 1330,
     "y": 280,
     "wires": []
   },
@@ -739,8 +739,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1070,
-    "y": 320,
+    "x": 1170,
+    "y": 280,
     "wires": [["e82d2f732d4dc904"]]
   },
   {
@@ -769,8 +769,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 1070,
-    "y": 280,
+    "x": 1170,
+    "y": 360,
     "wires": [["e82d2f732d4dc904"]]
   },
   {
@@ -799,7 +799,7 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 590,
+    "x": 730,
     "y": 280,
     "wires": [["f04712d79d73f6fe"]]
   },
@@ -809,7 +809,7 @@
     "z": "50071d41aac5805d",
     "name": "m5/request/alcohol",
     "topic": "m5/request/alcohol",
-    "qos": "1",
+    "qos": "0",
     "retain": "",
     "respTopic": "",
     "contentType": "",
@@ -817,7 +817,7 @@
     "correl": "",
     "expiry": "",
     "broker": "f1738451fe9af7df",
-    "x": 390,
+    "x": 510,
     "y": 120,
     "wires": []
   },
@@ -827,7 +827,7 @@
     "z": "50071d41aac5805d",
     "name": "",
     "topic": "m5/response/alcohol",
-    "qos": "1",
+    "qos": "0",
     "datatype": "utf8",
     "broker": "f1738451fe9af7df",
     "nl": false,
@@ -836,6 +836,236 @@
     "inputs": 0,
     "x": 130,
     "y": 360,
+    "wires": [["da6ed4a774f255b5"]]
+  },
+  {
+    "id": "c49a37e19345f089",
+    "type": "switch",
+    "z": "50071d41aac5805d",
+    "name": "",
+    "property": "waitingGetAlcoholRequest",
+    "propertyType": "flow",
+    "rules": [
+      {
+        "t": "nnull"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 510,
+    "y": 280,
+    "wires": [["705bcc949c0e7d01"], ["282a2915d43f46f0"]]
+  },
+  {
+    "id": "495faa4f99228b7f",
+    "type": "change",
+    "z": "50071d41aac5805d",
+    "name": "abnormalAlcohol",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{\"status\": \"Method Not Allowed\",\"message\": \"アルコールが検出されたので、社用車を借用することができません\"}",
+        "tot": "jsonata"
+      },
+      {
+        "t": "set",
+        "p": "statusCode",
+        "pt": "msg",
+        "to": "405",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1110,
+    "y": 480,
+    "wires": [["e82d2f732d4dc904"]]
+  },
+  {
+    "id": "724667aef5961a62",
+    "type": "csv",
+    "z": "50071d41aac5805d",
+    "name": "",
+    "spec": "rfc",
+    "sep": ",",
+    "hdrin": "",
+    "hdrout": "none",
+    "multi": "mult",
+    "ret": "\\n",
+    "temp": "employee_id,employee_name",
+    "skip": "0",
+    "strings": true,
+    "include_empty_strings": "",
+    "include_null_values": "",
+    "x": 390,
+    "y": 480,
+    "wires": [["71200c81aea23840"]]
+  },
+  {
+    "id": "bc5845f2e862e0fc",
+    "type": "file in",
+    "z": "50071d41aac5805d",
+    "name": "readEmployeeList",
+    "filename": "employee.csv",
+    "filenameType": "str",
+    "format": "utf8",
+    "chunk": false,
+    "sendError": false,
+    "encoding": "none",
+    "allProps": false,
+    "x": 210,
+    "y": 480,
+    "wires": [["724667aef5961a62"]]
+  },
+  {
+    "id": "71200c81aea23840",
+    "type": "function",
+    "z": "50071d41aac5805d",
+    "name": "matchDetermination",
+    "func": "const employeeList = msg.payload;\n\nconst targetId = msg.req.params.employeeId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n\nif (matchedData) {\n    msg.employeeData = matchedData;\n    msg.statusCode = 200;\n} else {\n    msg.employeeData = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 580,
+    "y": 480,
+    "wires": [["6d765d6f68e67726"]]
+  },
+  {
+    "id": "6d765d6f68e67726",
+    "type": "switch",
+    "z": "50071d41aac5805d",
+    "name": "",
+    "property": "statusCode",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "404",
+        "vt": "str"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 790,
+    "y": 480,
+    "wires": [["95b676772fcd88b8"], ["29ef5c4a3a69bdf7"]]
+  },
+  {
+    "id": "95b676772fcd88b8",
+    "type": "change",
+    "z": "50071d41aac5805d",
+    "name": "error",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "{\"status\": \"Not Found\",\"message\": \"ユーザ取得に失敗しました\"}",
+        "tot": "jsonata"
+      },
+      {
+        "t": "set",
+        "p": "statusCode",
+        "pt": "msg",
+        "to": "404",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 990,
+    "y": 400,
+    "wires": [["e82d2f732d4dc904"]]
+  },
+  {
+    "id": "8c5033a5d02c1a2a",
+    "type": "file",
+    "z": "50071d41aac5805d",
+    "name": "writeLog",
+    "filename": "log.csv",
+    "filenameType": "str",
+    "appendNewline": false,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 800,
+    "y": 580,
+    "wires": [["495faa4f99228b7f"]]
+  },
+  {
+    "id": "29ef5c4a3a69bdf7",
+    "type": "function",
+    "z": "50071d41aac5805d",
+    "name": "createLogDataFormat",
+    "func": "// --現在時刻取得ロジック--\nconst now = new Date();\n\nconst jstString = now.toLocaleString(\"en-US\", { timeZone: \"Asia/Tokyo\" });\nconst jstDate = new Date(jstString);\n\nconst yyyy = jstDate.getFullYear();\nconst MM = String(jstDate.getMonth() + 1).padStart(2, '0');\nconst dd = String(jstDate.getDate()).padStart(2, '0');\nconst hh = String(jstDate.getHours()).padStart(2, '0');\nconst mm = String(jstDate.getMinutes()).padStart(2, '0');\nconst ss = String(jstDate.getSeconds()).padStart(2, '0');\n\nconst formattedTime = `${yyyy}年${MM}月${dd}日 ${hh}時${mm}分${ss}秒`;\n\n\n// --csv記録データ構築--\nconst logData = {\n    timestamp: formattedTime,\n    employee_id: msg.employeeData.employee_id || \"unknown\", // 社員ID\n    employee_name: msg.employeeData.employee_name || \"unknown\", // 社員名\n    locker_id: \"\",\n    status: \"アルコール値異常\",\n};\n\nmsg.payload = logData;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 440,
+    "y": 580,
+    "wires": [["04bca447eb4c31db"]]
+  },
+  {
+    "id": "04bca447eb4c31db",
+    "type": "csv",
+    "z": "50071d41aac5805d",
+    "name": "",
+    "spec": "rfc",
+    "sep": ",",
+    "hdrin": "",
+    "hdrout": "none",
+    "multi": "one",
+    "ret": "\\n",
+    "temp": "timestamp,employee_id,employee_name,locker_id,status",
+    "skip": "0",
+    "strings": true,
+    "include_empty_strings": false,
+    "include_null_values": "",
+    "x": 650,
+    "y": 580,
+    "wires": [["8c5033a5d02c1a2a"]]
+  },
+  {
+    "id": "1cef734597641224",
+    "type": "inject",
+    "z": "50071d41aac5805d",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "false",
+    "payloadType": "bool",
+    "x": 110,
+    "y": 320,
     "wires": [["da6ed4a774f255b5"]]
   },
   {

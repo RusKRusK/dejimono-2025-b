@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // モーダル表示: 社員証待ち
     showModal("社員証をかざしてください");
 
-    const empRes = await fetch("/employees");
+    const empRes = await fetch("/employees", { cache: "no-store" });
     const employeeData = await empRes.json();
 
     if (empRes.status !== 200) {
@@ -36,7 +36,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // モーダル更新: アルコールチェック待ち
     showModal("アルコールチェックをしてください");
 
-    const alcRes = await fetch("/alcohol/check");
+    const alcRes = await fetch(`/alcohol/check/${employeeData.employee_id}`, {
+      cache: "no-store",
+    });
 
     if (alcRes.status === 200) {
       alert("アルコール確認に成功しました");
@@ -118,12 +120,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         lockerDiv.appendChild(btn);
         container.appendChild(lockerDiv);
       });
+    } else if (alcRes.status === 405) {
+      hideModal();
+      setTimeout(() => {
+        alert("アルコールを検知しました。社用車を借用することはできません。");
+        window.location.href = "/";
+      }, 100);
     } else {
       hideModal();
       setTimeout(() => {
         alert("アルコールチェックに失敗しました");
         window.location.href = "/";
-      }, 10);
+      }, 100);
     }
   } catch (error) {
     // エラー発生時はモーダルを消してからアラートを出す
