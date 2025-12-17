@@ -15,7 +15,7 @@ function getJsFrameContainer() {
     return jsFrameContainer;
 }
 
-function showToastAndWait(message, duration = 2000) {
+function showToastAndWait(message, isError = false, duration = 2000) {
     return new Promise((resolve) => {
         const container = getJsFrameContainer();
         const jsFrame = new JSFrame({ parentElement: container });
@@ -27,7 +27,9 @@ function showToastAndWait(message, duration = 2000) {
             style: {
                 pointerEvents: "auto",
                 borderRadius: "10px",
-                background: "rgb(0,124,255)",
+                background: isError
+                    ? "rgba(255, 0, 0, 1)"
+                    : "rgba(34, 156, 30, 1)",
             },
         });
         setTimeout(() => {

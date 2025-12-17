@@ -104,12 +104,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             } else {
               // サーバーからエラーが返された場合
               const errorMsg = (await postRes.text()) || "借用に失敗しました";
-              await showToastAndWait(errorMsg);
+              await showToastAndWait(errorMsg, true);
               window.location.href = "/";
             }
           } catch (postError) {
             console.error("Post error:", postError);
-            await showToastAndWait("借用処理に失敗しました");
+            await showToastAndWait("借用処理に失敗しました", true);
             window.location.href = "/";
           }
         });
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
       hideModal();
       setTimeout(async () => {
-        await showToastAndWait("アルコールチェックに失敗しました");
+        await showToastAndWait("アルコールチェックに失敗しました", true);
         window.location.href = "/";
       }, 10);
     }
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Process failed:", error);
 
     setTimeout(async () => {
-      await showToastAndWait("借用処理に失敗しました");
+      await showToastAndWait("借用処理に失敗しました", true);
       window.location.href = "/";
     }, 100);
   }
