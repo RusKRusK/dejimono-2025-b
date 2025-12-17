@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "POST",
       });
 
-      if (returnRes.status == 403) {
+      if (returnRes.status === 403) {
         throw new Error("返却対象のロッカーがありません");
       } else if (!returnRes.ok) {
         throw new Error("返却処理に失敗しました");
