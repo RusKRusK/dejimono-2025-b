@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // モーダル表示: 社員証待ち
     showModal("社員証をかざしてください");
 
-    const empRes = await fetch("/employees", { cache: "no-store" });
+    const empRes = await fetch("/borrowing/employees", { cache: "no-store" });
     const employeeData = await empRes.json();
 
     if (empRes.status !== 200) {
