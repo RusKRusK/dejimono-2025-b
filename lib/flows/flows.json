@@ -1,2013 +1,2872 @@
 [
-  {
-    "id": "7d2f5d9e383bdab4",
-    "type": "tab",
-    "label": "pageServe",
-    "disabled": false,
-    "info": "",
-    "env": []
-  },
-  {
-    "id": "bd06020514c0176d",
-    "type": "tab",
-    "label": "Flow 2",
-    "disabled": true,
-    "info": "",
-    "env": []
-  },
-  {
-    "id": "050ef760976f2d6e",
-    "type": "tab",
-    "label": "employeeCheck",
-    "disabled": false,
-    "info": "",
-    "env": []
-  },
-  {
-    "id": "50071d41aac5805d",
-    "type": "tab",
-    "label": "alcoholCheck",
-    "disabled": false,
-    "info": "",
-    "env": []
-  },
-  {
-    "id": "fc52afac86ef993d",
-    "type": "tab",
-    "label": "getLockerStatuses",
-    "disabled": false,
-    "info": "",
-    "env": []
-  },
-  {
-    "id": "ed42732c80150553",
-    "type": "tab",
-    "label": "borrowingKey",
-    "disabled": false,
-    "info": "",
-    "env": []
-  },
-  {
-    "id": "d3c6b2c525f179e1",
-    "type": "tab",
-    "label": "returningKey",
-    "disabled": false,
-    "info": "",
-    "env": []
-  },
-  {
-    "id": "2aeb66193b434c4b",
-    "type": "tab",
-    "label": "csvDownload",
-    "disabled": false,
-    "info": "",
-    "env": []
-  },
-  {
-    "id": "f1738451fe9af7df",
-    "type": "mqtt-broker",
-    "name": "",
-    "broker": "localhost",
-    "port": 1883,
-    "clientid": "",
-    "autoConnect": true,
-    "usetls": false,
-    "protocolVersion": 4,
-    "keepalive": 60,
-    "cleansession": true,
-    "autoUnsubscribe": true,
-    "birthTopic": "",
-    "birthQos": "0",
-    "birthRetain": "false",
-    "birthPayload": "",
-    "birthMsg": {},
-    "closeTopic": "",
-    "closeQos": "0",
-    "closeRetain": "false",
-    "closePayload": "",
-    "closeMsg": {},
-    "willTopic": "",
-    "willQos": "0",
-    "willRetain": "false",
-    "willPayload": "",
-    "willMsg": {},
-    "userProps": "",
-    "sessionExpiry": ""
-  },
-  {
-    "id": "e77bc779b8487f89",
-    "type": "http in",
-    "z": "7d2f5d9e383bdab4",
-    "name": "root_in",
-    "url": "/",
-    "method": "get",
-    "upload": false,
-    "skipBodyParsing": false,
-    "swaggerDoc": "",
-    "x": 170,
-    "y": 300,
-    "wires": [["9d247692988b3e49"]]
-  },
-  {
-    "id": "9d247692988b3e49",
-    "type": "file in",
-    "z": "7d2f5d9e383bdab4",
-    "name": "index.html_read",
-    "filename": "public/pages/index.html",
-    "filenameType": "str",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "allProps": false,
-    "x": 360,
-    "y": 300,
-    "wires": [["624adcdd788f6731"]]
-  },
-  {
-    "id": "624adcdd788f6731",
-    "type": "http response",
-    "z": "7d2f5d9e383bdab4",
-    "name": "root_response",
-    "statusCode": "200",
-    "headers": {},
-    "x": 620,
-    "y": 300,
-    "wires": []
-  },
-  {
-    "id": "9fdb4fb3f9911d38",
-    "type": "http in",
-    "z": "7d2f5d9e383bdab4",
-    "name": "borrowing_in",
-    "url": "/borrowing",
-    "method": "get",
-    "upload": false,
-    "skipBodyParsing": false,
-    "swaggerDoc": "",
-    "x": 190,
-    "y": 400,
-    "wires": [["b72bae6c310a8d11"]]
-  },
-  {
-    "id": "b72bae6c310a8d11",
-    "type": "file in",
-    "z": "7d2f5d9e383bdab4",
-    "name": "borrowing.html_read",
-    "filename": "public/pages/borrowing.html",
-    "filenameType": "str",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "allProps": false,
-    "x": 420,
-    "y": 400,
-    "wires": [["29a472416b4dca66"]]
-  },
-  {
-    "id": "29a472416b4dca66",
-    "type": "http response",
-    "z": "7d2f5d9e383bdab4",
-    "name": "borrowing_response",
-    "statusCode": "200",
-    "headers": {},
-    "x": 680,
-    "y": 400,
-    "wires": []
-  },
-  {
-    "id": "7f145836094e5887",
-    "type": "mqtt out",
-    "z": "bd06020514c0176d",
-    "name": "m5/request/rfid",
-    "topic": "m5/request/rfid",
-    "qos": "1",
-    "retain": "",
-    "respTopic": "",
-    "contentType": "",
-    "userProps": "",
-    "correl": "",
-    "expiry": "",
-    "broker": "f1738451fe9af7df",
-    "x": 770,
-    "y": 300,
-    "wires": []
-  },
-  {
-    "id": "3844667ef9823993",
-    "type": "mqtt in",
-    "z": "bd06020514c0176d",
-    "name": "",
-    "topic": "m5/response/rfid",
-    "qos": "1",
-    "datatype": "auto-detect",
-    "broker": "f1738451fe9af7df",
-    "nl": false,
-    "rap": true,
-    "rh": 0,
-    "inputs": 0,
-    "x": 250,
-    "y": 400,
-    "wires": [["daf22cd6958940c8"]]
-  },
-  {
-    "id": "67fb1b9727fd8b70",
-    "type": "change",
-    "z": "bd06020514c0176d",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "isWaitingRFID",
-        "pt": "flow",
-        "to": "true",
-        "tot": "bool"
-      },
-      {
-        "t": "set",
-        "p": "httpResponse",
-        "pt": "flow",
-        "to": "res",
-        "tot": "msg"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 390,
-    "y": 220,
-    "wires": [[]]
-  },
-  {
-    "id": "ca7fb674ebc0e506",
-    "type": "change",
-    "z": "bd06020514c0176d",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "isWaitingRFID",
-        "pt": "flow",
-        "to": "false",
-        "tot": "bool"
-      },
-      {
-        "t": "set",
-        "p": "res",
-        "pt": "msg",
-        "to": "httpResponse",
-        "tot": "flow"
-      },
-      {
-        "t": "delete",
-        "p": "httpResponse",
-        "pt": "flow"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 690,
-    "y": 440,
-    "wires": [["f7c903891bf3cae1"]]
-  },
-  {
-    "id": "daf22cd6958940c8",
-    "type": "switch",
-    "z": "bd06020514c0176d",
-    "name": "",
-    "property": "isWaitingRFID",
-    "propertyType": "flow",
-    "rules": [
-      {
-        "t": "true"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 1,
-    "x": 410,
-    "y": 400,
-    "wires": [["ca7fb674ebc0e506", "aa4fdcdb351735e4"]]
-  },
-  {
-    "id": "f5db06eb9c6ccab0",
-    "type": "http in",
-    "z": "bd06020514c0176d",
-    "name": "",
-    "url": "/a",
-    "method": "get",
-    "upload": false,
-    "skipBodyParsing": false,
-    "swaggerDoc": "",
-    "x": 190,
-    "y": 260,
-    "wires": [["67fb1b9727fd8b70", "7f145836094e5887", "02b1ddec794b7b3d"]]
-  },
-  {
-    "id": "02b1ddec794b7b3d",
-    "type": "debug",
-    "z": "bd06020514c0176d",
-    "name": "debug 1",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 730,
-    "y": 260,
-    "wires": []
-  },
-  {
-    "id": "aa4fdcdb351735e4",
-    "type": "debug",
-    "z": "bd06020514c0176d",
-    "name": "debug 2",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 890,
-    "y": 400,
-    "wires": []
-  },
-  {
-    "id": "f7c903891bf3cae1",
-    "type": "http response",
-    "z": "bd06020514c0176d",
-    "name": "",
-    "statusCode": "",
-    "headers": {},
-    "x": 870,
-    "y": 440,
-    "wires": []
-  },
-  {
-    "id": "1de5113790b714e5",
-    "type": "csv",
-    "z": "050ef760976f2d6e",
-    "name": "",
-    "spec": "rfc",
-    "sep": ",",
-    "hdrin": "",
-    "hdrout": "none",
-    "multi": "mult",
-    "ret": "\\n",
-    "temp": "employee_id,employee_name",
-    "skip": "0",
-    "strings": true,
-    "include_empty_strings": "",
-    "include_null_values": "",
-    "x": 970,
-    "y": 220,
-    "wires": [["e8c4b9e587b6dba5"]]
-  },
-  {
-    "id": "c26a206919a9df80",
-    "type": "file in",
-    "z": "050ef760976f2d6e",
-    "name": "readEmployeeList",
-    "filename": "employee.csv",
-    "filenameType": "str",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "allProps": false,
-    "x": 790,
-    "y": 220,
-    "wires": [["1de5113790b714e5"]]
-  },
-  {
-    "id": "0ea8a1b1bec165db",
-    "type": "inject",
-    "z": "050ef760976f2d6e",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "17f3b66032",
-    "payloadType": "str",
-    "x": 210,
-    "y": 220,
-    "wires": [["739d9fcd3d2e8544"]]
-  },
-  {
-    "id": "54f35b002661c7de",
-    "type": "http in",
-    "z": "050ef760976f2d6e",
-    "name": "",
-    "url": "/employees",
-    "method": "get",
-    "upload": false,
-    "skipBodyParsing": false,
-    "swaggerDoc": "",
-    "x": 220,
-    "y": 120,
-    "wires": [["f97346a22108dd90", "bbeeb41921998f77"]]
-  },
-  {
-    "id": "739d9fcd3d2e8544",
-    "type": "switch",
-    "z": "050ef760976f2d6e",
-    "name": "",
-    "property": "waitingGetEmployeeRequest",
-    "propertyType": "flow",
-    "rules": [
-      {
-        "t": "nnull"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 390,
-    "y": 220,
-    "wires": [["131303ac379e2104"], ["8dbd31f3a9253228"]]
-  },
-  {
-    "id": "131303ac379e2104",
-    "type": "change",
-    "z": "050ef760976f2d6e",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "searchId",
-        "pt": "msg",
-        "to": "payload",
-        "tot": "msg"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 570,
-    "y": 220,
-    "wires": [["c26a206919a9df80"]]
-  },
-  {
-    "id": "e8c4b9e587b6dba5",
-    "type": "function",
-    "z": "050ef760976f2d6e",
-    "name": "matchDetermination",
-    "func": "const waitingMsg = flow.get(\"waitingGetEmployeeRequest\");\n\nconst employeeList = msg.payload;\n\nconst targetId = msg.searchId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n// --- 応答メッセージの作成 ---\nmsg.req = waitingMsg.req;\nmsg.res = waitingMsg.res;\n\nif (matchedData) {\n    msg.payload = matchedData;\n} else {\n    msg.payload = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\n\nflow.set(\"waitingGetEmployeeRequest\", null);\n\nreturn msg;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 1160,
-    "y": 220,
-    "wires": [["3ee65ab17649973f"]]
-  },
-  {
-    "id": "f97346a22108dd90",
-    "type": "function",
-    "z": "050ef760976f2d6e",
-    "name": "setWaitingGetEmployeeRequest",
-    "func": "flow.set(\"waitingGetEmployeeRequest\", msg);\n\nreturn null;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 510,
-    "y": 120,
-    "wires": [[]]
-  },
-  {
-    "id": "3ee65ab17649973f",
-    "type": "http response",
-    "z": "050ef760976f2d6e",
-    "name": "",
-    "statusCode": "",
-    "headers": {},
-    "x": 1370,
-    "y": 220,
-    "wires": []
-  },
-  {
-    "id": "8dbd31f3a9253228",
-    "type": "change",
-    "z": "050ef760976f2d6e",
-    "name": "error",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"status\":\"Not Found\",\"message\":\"社員が取得できませんでした\"}",
-        "tot": "jsonata"
-      },
-      {
-        "t": "set",
-        "p": "statusCode",
-        "pt": "msg",
-        "to": "404",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 650,
-    "y": 320,
-    "wires": [["aa6c476d620a440f"]]
-  },
-  {
-    "id": "aa6c476d620a440f",
-    "type": "change",
-    "z": "050ef760976f2d6e",
-    "name": "setRequestAndResponse",
-    "rules": [
-      {
-        "t": "set",
-        "p": "req",
-        "pt": "msg",
-        "to": "waitingGetEmployeeRequest.req",
-        "tot": "flow"
-      },
-      {
-        "t": "set",
-        "p": "res",
-        "pt": "msg",
-        "to": "waitingGetEmployeeRequest.res",
-        "tot": "flow"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 890,
-    "y": 320,
-    "wires": [["3ee65ab17649973f"]]
-  },
-  {
-    "id": "bbeeb41921998f77",
-    "type": "mqtt out",
-    "z": "050ef760976f2d6e",
-    "name": "m5/request/rfid",
-    "topic": "m5/request/rfid",
-    "qos": "1",
-    "retain": "",
-    "respTopic": "",
-    "contentType": "",
-    "userProps": "",
-    "correl": "",
-    "expiry": "",
-    "broker": "f1738451fe9af7df",
-    "x": 520,
-    "y": 60,
-    "wires": []
-  },
-  {
-    "id": "b5a8c474efcde37c",
-    "type": "mqtt in",
-    "z": "050ef760976f2d6e",
-    "name": "",
-    "topic": "m5/response/rfid",
-    "qos": "1",
-    "datatype": "utf8",
-    "broker": "f1738451fe9af7df",
-    "nl": false,
-    "rap": true,
-    "rh": 0,
-    "inputs": 0,
-    "x": 200,
-    "y": 280,
-    "wires": [["739d9fcd3d2e8544"]]
-  },
-  {
-    "id": "63cb31f9f15dfcb0",
-    "type": "inject",
-    "z": "50071d41aac5805d",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "true",
-    "payloadType": "bool",
-    "x": 110,
-    "y": 280,
-    "wires": [["da6ed4a774f255b5"]]
-  },
-  {
-    "id": "41667e3788af6e15",
-    "type": "http in",
-    "z": "50071d41aac5805d",
-    "name": "",
-    "url": "/alcohol/check/:employeeId",
-    "method": "get",
-    "upload": false,
-    "skipBodyParsing": false,
-    "swaggerDoc": "",
-    "x": 190,
-    "y": 180,
-    "wires": [["479bb4a31a313162", "d2944f77d59cb361"]]
-  },
-  {
-    "id": "f04712d79d73f6fe",
-    "type": "switch",
-    "z": "50071d41aac5805d",
-    "name": "",
-    "property": "isNormal",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "true"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 930,
-    "y": 280,
-    "wires": [["571cfbf3b2e8f630"], ["bc5845f2e862e0fc"]]
-  },
-  {
-    "id": "da6ed4a774f255b5",
-    "type": "change",
-    "z": "50071d41aac5805d",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "isNormal",
-        "pt": "msg",
-        "to": "payload",
-        "tot": "msg"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 330,
-    "y": 280,
-    "wires": [["c49a37e19345f089"]]
-  },
-  {
-    "id": "479bb4a31a313162",
-    "type": "function",
-    "z": "50071d41aac5805d",
-    "name": "setWaitingGetAlcoholRequest",
-    "func": "flow.set(\"waitingGetAlcoholRequest\", msg);\n\nreturn null;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 550,
-    "y": 180,
-    "wires": [[]]
-  },
-  {
-    "id": "e82d2f732d4dc904",
-    "type": "http response",
-    "z": "50071d41aac5805d",
-    "name": "",
-    "statusCode": "",
-    "headers": {},
-    "x": 1330,
-    "y": 280,
-    "wires": []
-  },
-  {
-    "id": "571cfbf3b2e8f630",
-    "type": "change",
-    "z": "50071d41aac5805d",
-    "name": "normal",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"alcoholCheck\": msg.alcoholCheck}",
-        "tot": "jsonata"
-      },
-      {
-        "t": "set",
-        "p": "statusCode",
-        "pt": "msg",
-        "to": "200",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 1170,
-    "y": 280,
-    "wires": [["e82d2f732d4dc904"]]
-  },
-  {
-    "id": "282a2915d43f46f0",
-    "type": "change",
-    "z": "50071d41aac5805d",
-    "name": "error",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"status\": \"Not Found\",\"message\": \"アルコール検査判定が取得できませんでした\"}",
-        "tot": "jsonata"
-      },
-      {
-        "t": "set",
-        "p": "statusCode",
-        "pt": "msg",
-        "to": "404",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 1170,
-    "y": 360,
-    "wires": [["e82d2f732d4dc904"]]
-  },
-  {
-    "id": "705bcc949c0e7d01",
-    "type": "change",
-    "z": "50071d41aac5805d",
-    "name": "setRequestAndResponse",
-    "rules": [
-      {
-        "t": "set",
-        "p": "req",
-        "pt": "msg",
-        "to": "waitingGetAlcoholRequest.req",
-        "tot": "flow"
-      },
-      {
-        "t": "set",
-        "p": "res",
-        "pt": "msg",
-        "to": "waitingGetAlcoholRequest.res",
-        "tot": "flow"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 730,
-    "y": 280,
-    "wires": [["f04712d79d73f6fe"]]
-  },
-  {
-    "id": "d2944f77d59cb361",
-    "type": "mqtt out",
-    "z": "50071d41aac5805d",
-    "name": "m5/request/alcohol",
-    "topic": "m5/request/alcohol",
-    "qos": "0",
-    "retain": "",
-    "respTopic": "",
-    "contentType": "",
-    "userProps": "",
-    "correl": "",
-    "expiry": "",
-    "broker": "f1738451fe9af7df",
-    "x": 510,
-    "y": 120,
-    "wires": []
-  },
-  {
-    "id": "04f4167634741e08",
-    "type": "mqtt in",
-    "z": "50071d41aac5805d",
-    "name": "",
-    "topic": "m5/response/alcohol",
-    "qos": "0",
-    "datatype": "utf8",
-    "broker": "f1738451fe9af7df",
-    "nl": false,
-    "rap": true,
-    "rh": 0,
-    "inputs": 0,
-    "x": 130,
-    "y": 360,
-    "wires": [["da6ed4a774f255b5"]]
-  },
-  {
-    "id": "c49a37e19345f089",
-    "type": "switch",
-    "z": "50071d41aac5805d",
-    "name": "",
-    "property": "waitingGetAlcoholRequest",
-    "propertyType": "flow",
-    "rules": [
-      {
-        "t": "nnull"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 510,
-    "y": 280,
-    "wires": [["705bcc949c0e7d01"], ["282a2915d43f46f0"]]
-  },
-  {
-    "id": "495faa4f99228b7f",
-    "type": "change",
-    "z": "50071d41aac5805d",
-    "name": "abnormalAlcohol",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"status\": \"Method Not Allowed\",\"message\": \"アルコールが検出されたので、社用車を借用することができません\"}",
-        "tot": "jsonata"
-      },
-      {
-        "t": "set",
-        "p": "statusCode",
-        "pt": "msg",
-        "to": "403",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 1110,
-    "y": 480,
-    "wires": [["e82d2f732d4dc904"]]
-  },
-  {
-    "id": "724667aef5961a62",
-    "type": "csv",
-    "z": "50071d41aac5805d",
-    "name": "",
-    "spec": "rfc",
-    "sep": ",",
-    "hdrin": "",
-    "hdrout": "none",
-    "multi": "mult",
-    "ret": "\\n",
-    "temp": "employee_id,employee_name",
-    "skip": "0",
-    "strings": true,
-    "include_empty_strings": "",
-    "include_null_values": "",
-    "x": 390,
-    "y": 480,
-    "wires": [["71200c81aea23840"]]
-  },
-  {
-    "id": "bc5845f2e862e0fc",
-    "type": "file in",
-    "z": "50071d41aac5805d",
-    "name": "readEmployeeList",
-    "filename": "employee.csv",
-    "filenameType": "str",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "allProps": false,
-    "x": 210,
-    "y": 480,
-    "wires": [["724667aef5961a62"]]
-  },
-  {
-    "id": "71200c81aea23840",
-    "type": "function",
-    "z": "50071d41aac5805d",
-    "name": "matchDetermination",
-    "func": "const employeeList = msg.payload;\n\nconst targetId = msg.req.params.employeeId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n\nif (matchedData) {\n    msg.employeeData = matchedData;\n    msg.statusCode = 200;\n} else {\n    msg.employeeData = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\nreturn msg;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 580,
-    "y": 480,
-    "wires": [["6d765d6f68e67726"]]
-  },
-  {
-    "id": "6d765d6f68e67726",
-    "type": "switch",
-    "z": "50071d41aac5805d",
-    "name": "",
-    "property": "statusCode",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "404",
-        "vt": "str"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 790,
-    "y": 480,
-    "wires": [["95b676772fcd88b8"], ["29ef5c4a3a69bdf7"]]
-  },
-  {
-    "id": "95b676772fcd88b8",
-    "type": "change",
-    "z": "50071d41aac5805d",
-    "name": "error",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"status\": \"Not Found\",\"message\": \"ユーザ取得に失敗しました\"}",
-        "tot": "jsonata"
-      },
-      {
-        "t": "set",
-        "p": "statusCode",
-        "pt": "msg",
-        "to": "404",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 990,
-    "y": 400,
-    "wires": [["e82d2f732d4dc904"]]
-  },
-  {
-    "id": "8c5033a5d02c1a2a",
-    "type": "file",
-    "z": "50071d41aac5805d",
-    "name": "writeLog",
-    "filename": "log.csv",
-    "filenameType": "str",
-    "appendNewline": false,
-    "createDir": false,
-    "overwriteFile": "false",
-    "encoding": "none",
-    "x": 800,
-    "y": 580,
-    "wires": [["495faa4f99228b7f"]]
-  },
-  {
-    "id": "29ef5c4a3a69bdf7",
-    "type": "function",
-    "z": "50071d41aac5805d",
-    "name": "createLogDataFormat",
-    "func": "// --現在時刻取得ロジック--\nconst now = new Date();\n\nconst jstString = now.toLocaleString(\"en-US\", { timeZone: \"Asia/Tokyo\" });\nconst jstDate = new Date(jstString);\n\nconst yyyy = jstDate.getFullYear();\nconst MM = String(jstDate.getMonth() + 1).padStart(2, '0');\nconst dd = String(jstDate.getDate()).padStart(2, '0');\nconst hh = String(jstDate.getHours()).padStart(2, '0');\nconst mm = String(jstDate.getMinutes()).padStart(2, '0');\nconst ss = String(jstDate.getSeconds()).padStart(2, '0');\n\nconst formattedTime = `${yyyy}年${MM}月${dd}日 ${hh}時${mm}分${ss}秒`;\n\n\n// --csv記録データ構築--\nconst logData = {\n    timestamp: formattedTime,\n    employee_id: msg.employeeData.employee_id || \"unknown\", // 社員ID\n    employee_name: msg.employeeData.employee_name || \"unknown\", // 社員名\n    locker_id: \"\",\n    status: \"アルコール値異常\",\n};\n\nmsg.payload = logData;\nreturn msg;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 440,
-    "y": 580,
-    "wires": [["04bca447eb4c31db"]]
-  },
-  {
-    "id": "04bca447eb4c31db",
-    "type": "csv",
-    "z": "50071d41aac5805d",
-    "name": "",
-    "spec": "rfc",
-    "sep": ",",
-    "hdrin": "",
-    "hdrout": "none",
-    "multi": "one",
-    "ret": "\\n",
-    "temp": "timestamp,employee_id,employee_name,locker_id,status",
-    "skip": "0",
-    "strings": true,
-    "include_empty_strings": false,
-    "include_null_values": "",
-    "x": 650,
-    "y": 580,
-    "wires": [["8c5033a5d02c1a2a"]]
-  },
-  {
-    "id": "1cef734597641224",
-    "type": "inject",
-    "z": "50071d41aac5805d",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "false",
-    "payloadType": "bool",
-    "x": 110,
-    "y": 320,
-    "wires": [["da6ed4a774f255b5"]]
-  },
-  {
-    "id": "6fb540cd2f75ddc6",
-    "type": "csv",
-    "z": "fc52afac86ef993d",
-    "name": "",
-    "spec": "rfc",
-    "sep": ",",
-    "hdrin": true,
-    "hdrout": "none",
-    "multi": "mult",
-    "ret": "\\n",
-    "temp": "locker_id,status,employee_borrowing_id",
-    "skip": "0",
-    "strings": true,
-    "include_empty_strings": "",
-    "include_null_values": "",
-    "x": 770,
-    "y": 180,
-    "wires": [["b677b505beb076ac"]]
-  },
-  {
-    "id": "e24038d425c61987",
-    "type": "file in",
-    "z": "fc52afac86ef993d",
-    "name": "readLockerList",
-    "filename": "locker.csv",
-    "filenameType": "str",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "allProps": false,
-    "x": 580,
-    "y": 180,
-    "wires": [["6fb540cd2f75ddc6"]]
-  },
-  {
-    "id": "ed4fc63e0edc8af1",
-    "type": "http in",
-    "z": "fc52afac86ef993d",
-    "name": "",
-    "url": "/lockers",
-    "method": "get",
-    "upload": false,
-    "skipBodyParsing": false,
-    "swaggerDoc": "",
-    "x": 330,
-    "y": 180,
-    "wires": [["e24038d425c61987"]]
-  },
-  {
-    "id": "b677b505beb076ac",
-    "type": "http response",
-    "z": "fc52afac86ef993d",
-    "name": "",
-    "statusCode": "",
-    "headers": {},
-    "x": 950,
-    "y": 180,
-    "wires": []
-  },
-  {
-    "id": "d0ad1b80cf365465",
-    "type": "http in",
-    "z": "ed42732c80150553",
-    "name": "",
-    "url": "/borrowing",
-    "method": "post",
-    "upload": false,
-    "skipBodyParsing": false,
-    "swaggerDoc": "",
-    "x": 220,
-    "y": 140,
-    "wires": [["6191e39823b693d3", "3c2a6aeec8ba4875"]]
-  },
-  {
-    "id": "6191e39823b693d3",
-    "type": "function",
-    "z": "ed42732c80150553",
-    "name": "setWaitingBorrowingKeyRequest",
-    "func": "flow.set(\"waitingBorrowingKeyRequest\", msg);\n\nreturn null;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 540,
-    "y": 140,
-    "wires": [[]]
-  },
-  {
-    "id": "98c5d4b4ab243ade",
-    "type": "file",
-    "z": "ed42732c80150553",
-    "name": "writeLog",
-    "filename": "log.csv",
-    "filenameType": "str",
-    "appendNewline": false,
-    "createDir": false,
-    "overwriteFile": "false",
-    "encoding": "none",
-    "x": 1040,
-    "y": 520,
-    "wires": [["861a178dfd39814c"]]
-  },
-  {
-    "id": "48f19e1857121e93",
-    "type": "function",
-    "z": "ed42732c80150553",
-    "name": "createLogDataFormat",
-    "func": "// --現在時刻取得ロジック--\nconst now = new Date();\n\nconst jstString = now.toLocaleString(\"en-US\", { timeZone: \"Asia/Tokyo\" });\nconst jstDate = new Date(jstString);\n\nconst yyyy = jstDate.getFullYear();\nconst MM = String(jstDate.getMonth() + 1).padStart(2, '0');\nconst dd = String(jstDate.getDate()).padStart(2, '0');\nconst hh = String(jstDate.getHours()).padStart(2, '0');\nconst mm = String(jstDate.getMinutes()).padStart(2, '0');\nconst ss = String(jstDate.getSeconds()).padStart(2, '0');\n\nconst formattedTime = `${yyyy}年${MM}月${dd}日 ${hh}時${mm}分${ss}秒`;\n\nconst waitingRequest = flow.get(\"waitingBorrowingKeyRequest\");\nconst postBody = (waitingRequest && waitingRequest.payload) ? waitingRequest.payload : {};\n\n// --csv記録データ構築--\nconst logData = {\n    timestamp: formattedTime,\n    employee_id: postBody.employee_id || \"unknown\", // 社員ID\n    employee_name: postBody.employee_name || \"unknown\", // 社員名\n    locker_id: postBody.locker_id || \"unknown\", // 該当ロッカー番号\n    status: \"借用\", // ステータス\n};\n\nmsg.payload = logData;\nreturn msg;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 680,
-    "y": 520,
-    "wires": [["9fdb11bbd841aa16"]]
-  },
-  {
-    "id": "9fdb11bbd841aa16",
-    "type": "csv",
-    "z": "ed42732c80150553",
-    "name": "",
-    "spec": "rfc",
-    "sep": ",",
-    "hdrin": "",
-    "hdrout": "none",
-    "multi": "one",
-    "ret": "\\n",
-    "temp": "timestamp,employee_id,employee_name,locker_id,status",
-    "skip": "0",
-    "strings": true,
-    "include_empty_strings": false,
-    "include_null_values": "",
-    "x": 890,
-    "y": 520,
-    "wires": [["98c5d4b4ab243ade"]]
-  },
-  {
-    "id": "cb0d2bb01b01f693",
-    "type": "function",
-    "z": "ed42732c80150553",
-    "name": "updateLockerStatus",
-    "func": "const lockerList = msg.payload;\n\nconst targetId = msg.searchLockerId;\n\n// --- 検索処理 ---\nconst matchedData = lockerList.find(row => String(row.locker_id) === String(targetId));\n\nconst waitingRequest = flow.get(\"waitingBorrowingKeyRequest\");\nconst postBody = (waitingRequest && waitingRequest.payload) ? waitingRequest.payload : {};\n\nif (matchedData) {\n    matchedData.status = \"occupation\";\n    matchedData.employee_borrowing_id = postBody.employee_id;\n    msg.payload = lockerList;\n}\n\nreturn msg;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 820,
-    "y": 400,
-    "wires": [["c10d16290ea38bec"]]
-  },
-  {
-    "id": "8f3c7661e383d12d",
-    "type": "change",
-    "z": "ed42732c80150553",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "searchLockerId",
-        "pt": "msg",
-        "to": "waitingBorrowingKeyRequest.payload.locker_id",
-        "tot": "flow"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 210,
-    "y": 400,
-    "wires": [["22779d1493b55955"]]
-  },
-  {
-    "id": "9db0a6673688a25b",
-    "type": "csv",
-    "z": "ed42732c80150553",
-    "name": "",
-    "spec": "rfc",
-    "sep": ",",
-    "hdrin": "",
-    "hdrout": "none",
-    "multi": "mult",
-    "ret": "\\n",
-    "temp": "locker_id,status,employee_borrowing_id",
-    "skip": "0",
-    "strings": true,
-    "include_empty_strings": "",
-    "include_null_values": "",
-    "x": 630,
-    "y": 400,
-    "wires": [["cb0d2bb01b01f693"]]
-  },
-  {
-    "id": "22779d1493b55955",
-    "type": "file in",
-    "z": "ed42732c80150553",
-    "name": "readLockerList",
-    "filename": "locker.csv",
-    "filenameType": "str",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "allProps": false,
-    "x": 460,
-    "y": 400,
-    "wires": [["9db0a6673688a25b"]]
-  },
-  {
-    "id": "dbc3bdf709a443a5",
-    "type": "file",
-    "z": "ed42732c80150553",
-    "name": "updateLockerState",
-    "filename": "locker.csv",
-    "filenameType": "str",
-    "appendNewline": false,
-    "createDir": false,
-    "overwriteFile": "true",
-    "encoding": "none",
-    "x": 1230,
-    "y": 400,
-    "wires": [["48f19e1857121e93"]]
-  },
-  {
-    "id": "c10d16290ea38bec",
-    "type": "csv",
-    "z": "ed42732c80150553",
-    "name": "",
-    "spec": "rfc",
-    "sep": ",",
-    "hdrin": "",
-    "hdrout": "none",
-    "multi": "one",
-    "ret": "\\n",
-    "temp": "",
-    "skip": "0",
-    "strings": true,
-    "include_empty_strings": false,
-    "include_null_values": "",
-    "x": 1030,
-    "y": 400,
-    "wires": [["dbc3bdf709a443a5"]]
-  },
-  {
-    "id": "c8c096dff3c0ed20",
-    "type": "inject",
-    "z": "ed42732c80150553",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "17f3b66032",
-    "payloadType": "str",
-    "x": 230,
-    "y": 280,
-    "wires": [["8421e9aa06ab43bd"]]
-  },
-  {
-    "id": "8421e9aa06ab43bd",
-    "type": "switch",
-    "z": "ed42732c80150553",
-    "name": "",
-    "property": "waitingBorrowingKeyRequest",
-    "propertyType": "flow",
-    "rules": [
-      {
-        "t": "nnull"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 410,
-    "y": 280,
-    "wires": [["8f3c7661e383d12d"], ["d97a818277ff4f58"]]
-  },
-  {
-    "id": "1c374b23d381f66e",
-    "type": "http response",
-    "z": "ed42732c80150553",
-    "name": "",
-    "statusCode": "",
-    "headers": {},
-    "x": 1630,
-    "y": 520,
-    "wires": []
-  },
-  {
-    "id": "d97a818277ff4f58",
-    "type": "change",
-    "z": "ed42732c80150553",
-    "name": "error",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"status\": \"Not Found\",\"message\": \"借用処理が失敗しました\"}",
-        "tot": "jsonata"
-      },
-      {
-        "t": "set",
-        "p": "statusCode",
-        "pt": "msg",
-        "to": "404",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 750,
-    "y": 640,
-    "wires": [["77588db6923faeb1"]]
-  },
-  {
-    "id": "77588db6923faeb1",
-    "type": "change",
-    "z": "ed42732c80150553",
-    "name": "setRequestAndResponse",
-    "rules": [
-      {
-        "t": "set",
-        "p": "req",
-        "pt": "msg",
-        "to": "waitingBorrowingKeyRequest.req",
-        "tot": "flow"
-      },
-      {
-        "t": "set",
-        "p": "res",
-        "pt": "msg",
-        "to": "waitingBorrowingKeyRequest.res",
-        "tot": "flow"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 1410,
-    "y": 520,
-    "wires": [["1c374b23d381f66e"]]
-  },
-  {
-    "id": "861a178dfd39814c",
-    "type": "change",
-    "z": "ed42732c80150553",
-    "name": "OK",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"status\": \"successful\",\"message\": \"借用処理が成功しました\"}",
-        "tot": "jsonata"
-      },
-      {
-        "t": "set",
-        "p": "statusCode",
-        "pt": "msg",
-        "to": "200",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 1190,
-    "y": 520,
-    "wires": [["77588db6923faeb1"]]
-  },
-  {
-    "id": "3c2a6aeec8ba4875",
-    "type": "mqtt out",
-    "z": "ed42732c80150553",
-    "name": "",
-    "topic": "m5/request/locker",
-    "qos": "1",
-    "retain": "",
-    "respTopic": "",
-    "contentType": "",
-    "userProps": "",
-    "correl": "",
-    "expiry": "",
-    "broker": "f1738451fe9af7df",
-    "x": 530,
-    "y": 80,
-    "wires": []
-  },
-  {
-    "id": "9ffe751cce4a97a2",
-    "type": "mqtt in",
-    "z": "ed42732c80150553",
-    "name": "",
-    "topic": "m5/response/locker",
-    "qos": "1",
-    "datatype": "utf8",
-    "broker": "f1738451fe9af7df",
-    "nl": false,
-    "rap": true,
-    "rh": 0,
-    "inputs": 0,
-    "x": 210,
-    "y": 220,
-    "wires": [["8421e9aa06ab43bd"]]
-  },
-  {
-    "id": "f9faa64daf7d0604",
-    "type": "http in",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "url": "/return/:employeeId",
-    "method": "post",
-    "upload": false,
-    "skipBodyParsing": false,
-    "swaggerDoc": "",
-    "x": 210,
-    "y": 60,
-    "wires": [["883ce178b0330f1e", "7c1c4916c5d65308"]]
-  },
-  {
-    "id": "613e223b6e0b1f93",
-    "type": "file",
-    "z": "d3c6b2c525f179e1",
-    "name": "writeLog",
-    "filename": "log.csv",
-    "filenameType": "str",
-    "appendNewline": false,
-    "createDir": false,
-    "overwriteFile": "false",
-    "encoding": "none",
-    "x": 680,
-    "y": 620,
-    "wires": [["fcd273a7020f8066"]]
-  },
-  {
-    "id": "6170a9b7dd1f6a47",
-    "type": "function",
-    "z": "d3c6b2c525f179e1",
-    "name": "createLogDataFormat",
-    "func": "// --現在時刻取得ロジック--\nconst now = new Date();\n\nconst jstString = now.toLocaleString(\"en-US\", { timeZone: \"Asia/Tokyo\" });\nconst jstDate = new Date(jstString);\n\nconst yyyy = jstDate.getFullYear();\nconst MM = String(jstDate.getMonth() + 1).padStart(2, '0');\nconst dd = String(jstDate.getDate()).padStart(2, '0');\nconst hh = String(jstDate.getHours()).padStart(2, '0');\nconst mm = String(jstDate.getMinutes()).padStart(2, '0');\nconst ss = String(jstDate.getSeconds()).padStart(2, '0');\n\nconst formattedTime = `${yyyy}年${MM}月${dd}日 ${hh}時${mm}分${ss}秒`;\n\n\n// --csv記録データ構築--\nconst logData = {\n    timestamp: formattedTime,\n    employee_id: msg.employeeData.employee_id || \"unknown\", // 社員ID\n    employee_name: msg.employeeData.employee_name || \"unknown\", // 社員名\n    locker_id: msg.lockerId || \"unknown\", // 該当ロッカー番号\n    status: \"返却\", // ステータス\n};\n\nmsg.payload = logData;\nreturn msg;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 320,
-    "y": 620,
-    "wires": [["92454275a2b0f81f"]]
-  },
-  {
-    "id": "92454275a2b0f81f",
-    "type": "csv",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "spec": "rfc",
-    "sep": ",",
-    "hdrin": "",
-    "hdrout": "none",
-    "multi": "one",
-    "ret": "\\n",
-    "temp": "timestamp,employee_id,employee_name,locker_id,status",
-    "skip": "0",
-    "strings": true,
-    "include_empty_strings": false,
-    "include_null_values": "",
-    "x": 530,
-    "y": 620,
-    "wires": [["613e223b6e0b1f93"]]
-  },
-  {
-    "id": "35bc57343fd7a47c",
-    "type": "function",
-    "z": "d3c6b2c525f179e1",
-    "name": "updateLockerStatus",
-    "func": "const lockerList = msg.payload;\n\n// --- 検索処理 ---\nconst matchedData = lockerList.find(row => String(row.employee_borrowing_id) === String(msg.req.params.employeeId));\n\n\nif (matchedData) {\n    matchedData.status = \"vacancy\";\n    matchedData.employee_borrowing_id = \"\";\n    msg.lockerId = matchedData.locker_id;\n    msg.payload = lockerList;\n}\nelse {\n    msg.statusCode = 404;\n}\n\nreturn msg;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 640,
-    "y": 500,
-    "wires": [["85aaf2c09a06d69d"]]
-  },
-  {
-    "id": "1a71b26e6243e9f4",
-    "type": "csv",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "spec": "rfc",
-    "sep": ",",
-    "hdrin": "",
-    "hdrout": "none",
-    "multi": "mult",
-    "ret": "\\n",
-    "temp": "locker_id,status,employee_borrowing_id",
-    "skip": "0",
-    "strings": true,
-    "include_empty_strings": "",
-    "include_null_values": "",
-    "x": 450,
-    "y": 500,
-    "wires": [["35bc57343fd7a47c"]]
-  },
-  {
-    "id": "58e9ecedd7a419cb",
-    "type": "file in",
-    "z": "d3c6b2c525f179e1",
-    "name": "readLockerList",
-    "filename": "locker.csv",
-    "filenameType": "str",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "allProps": false,
-    "x": 280,
-    "y": 500,
-    "wires": [["1a71b26e6243e9f4"]]
-  },
-  {
-    "id": "44dcb5c61d37d0d2",
-    "type": "file",
-    "z": "d3c6b2c525f179e1",
-    "name": "updateLockerState",
-    "filename": "locker.csv",
-    "filenameType": "str",
-    "appendNewline": false,
-    "createDir": false,
-    "overwriteFile": "true",
-    "encoding": "none",
-    "x": 1210,
-    "y": 500,
-    "wires": [["6170a9b7dd1f6a47"]]
-  },
-  {
-    "id": "b33b7c6240d49d7d",
-    "type": "csv",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "spec": "rfc",
-    "sep": ",",
-    "hdrin": "",
-    "hdrout": "none",
-    "multi": "one",
-    "ret": "\\n",
-    "temp": "",
-    "skip": "0",
-    "strings": true,
-    "include_empty_strings": false,
-    "include_null_values": "",
-    "x": 1010,
-    "y": 500,
-    "wires": [["44dcb5c61d37d0d2"]]
-  },
-  {
-    "id": "fd9413c99d1a6f04",
-    "type": "http response",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "statusCode": "",
-    "headers": {},
-    "x": 1210,
-    "y": 620,
-    "wires": []
-  },
-  {
-    "id": "fcd273a7020f8066",
-    "type": "change",
-    "z": "d3c6b2c525f179e1",
-    "name": "OK",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"status\": \"successful\",\"message\": \"返却処理が成功しました\"}",
-        "tot": "jsonata"
-      },
-      {
-        "t": "set",
-        "p": "statusCode",
-        "pt": "msg",
-        "to": "200",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 870,
-    "y": 620,
-    "wires": [["fd9413c99d1a6f04"]]
-  },
-  {
-    "id": "46fb0a52cb3a7949",
-    "type": "csv",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "spec": "rfc",
-    "sep": ",",
-    "hdrin": "",
-    "hdrout": "none",
-    "multi": "mult",
-    "ret": "\\n",
-    "temp": "employee_id,employee_name",
-    "skip": "0",
-    "strings": true,
-    "include_empty_strings": "",
-    "include_null_values": "",
-    "x": 450,
-    "y": 400,
-    "wires": [["16a7edac59d54647"]]
-  },
-  {
-    "id": "fc2e3612aac00590",
-    "type": "file in",
-    "z": "d3c6b2c525f179e1",
-    "name": "readEmployeeList",
-    "filename": "employee.csv",
-    "filenameType": "str",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "allProps": false,
-    "x": 270,
-    "y": 400,
-    "wires": [["46fb0a52cb3a7949"]]
-  },
-  {
-    "id": "16a7edac59d54647",
-    "type": "function",
-    "z": "d3c6b2c525f179e1",
-    "name": "matchDetermination",
-    "func": "const employeeList = msg.payload;\n\nconst targetId = msg.req.params.employeeId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n\nif (matchedData) {\n    msg.employeeData = matchedData;\n} else {\n    msg.employeeData = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\nreturn msg;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 640,
-    "y": 400,
-    "wires": [["eab21a5c401c2857"]]
-  },
-  {
-    "id": "eab21a5c401c2857",
-    "type": "switch",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "property": "statusCode",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "404",
-        "vt": "str"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 850,
-    "y": 400,
-    "wires": [["fcb56a36ea02d179"], ["58e9ecedd7a419cb"]]
-  },
-  {
-    "id": "fcb56a36ea02d179",
-    "type": "change",
-    "z": "d3c6b2c525f179e1",
-    "name": "error",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "{\"status\": \"Not Found\",\"message\": \"返却処理が失敗しました\"}",
-        "tot": "jsonata"
-      },
-      {
-        "t": "set",
-        "p": "statusCode",
-        "pt": "msg",
-        "to": "404",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 1150,
-    "y": 420,
-    "wires": [["fd9413c99d1a6f04"]]
-  },
-  {
-    "id": "85aaf2c09a06d69d",
-    "type": "switch",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "property": "statusCode",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "404",
-        "vt": "str"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 830,
-    "y": 500,
-    "wires": [["fcb56a36ea02d179"], ["b33b7c6240d49d7d"]]
-  },
-  {
-    "id": "7c1c4916c5d65308",
-    "type": "function",
-    "z": "d3c6b2c525f179e1",
-    "name": "setWaitingReturningKeyRequest",
-    "func": "flow.set(\"waitingReturningKeyRequest\", msg);\n\nreturn null;\n",
-    "outputs": 1,
-    "timeout": 0,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 570,
-    "y": 120,
-    "wires": [[]]
-  },
-  {
-    "id": "883ce178b0330f1e",
-    "type": "mqtt out",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "topic": "m5/request/locker",
-    "qos": "1",
-    "retain": "",
-    "respTopic": "",
-    "contentType": "",
-    "userProps": "",
-    "correl": "",
-    "expiry": "",
-    "broker": "f1738451fe9af7df",
-    "x": 530,
-    "y": 60,
-    "wires": []
-  },
-  {
-    "id": "2db0957825d64368",
-    "type": "change",
-    "z": "d3c6b2c525f179e1",
-    "name": "setRequestAndResponse",
-    "rules": [
-      {
-        "t": "set",
-        "p": "req",
-        "pt": "msg",
-        "to": "waitingReturningKeyRequest.req",
-        "tot": "flow"
-      },
-      {
-        "t": "set",
-        "p": "res",
-        "pt": "msg",
-        "to": "waitingReturningKeyRequest.res",
-        "tot": "flow"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 670,
-    "y": 280,
-    "wires": [["fc2e3612aac00590"]]
-  },
-  {
-    "id": "1660ef8f50e74237",
-    "type": "inject",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "17f3b66032",
-    "payloadType": "str",
-    "x": 290,
-    "y": 280,
-    "wires": [["8d98dab15f077ef3"]]
-  },
-  {
-    "id": "8d98dab15f077ef3",
-    "type": "switch",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "property": "waitingReturningKeyRequest",
-    "propertyType": "flow",
-    "rules": [
-      {
-        "t": "nnull"
-      },
-      {
-        "t": "else"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 450,
-    "y": 280,
-    "wires": [["2db0957825d64368"], ["fcb56a36ea02d179"]]
-  },
-  {
-    "id": "9159ddd33c4f6105",
-    "type": "mqtt in",
-    "z": "d3c6b2c525f179e1",
-    "name": "",
-    "topic": "m5/response/locker",
-    "qos": "1",
-    "datatype": "utf8",
-    "broker": "f1738451fe9af7df",
-    "nl": false,
-    "rap": true,
-    "rh": 0,
-    "inputs": 0,
-    "x": 290,
-    "y": 220,
-    "wires": [["8d98dab15f077ef3"]]
-  },
-  {
-    "id": "57e27369e08dcfb5",
-    "type": "file in",
-    "z": "2aeb66193b434c4b",
-    "name": "readLogs",
-    "filename": "log.csv",
-    "filenameType": "str",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "allProps": false,
-    "x": 480,
-    "y": 160,
-    "wires": [["94169b02dd1f8a47"]]
-  },
-  {
-    "id": "a2cc7b5e5489b7d7",
-    "type": "http in",
-    "z": "2aeb66193b434c4b",
-    "name": "",
-    "url": "/download/logs",
-    "method": "get",
-    "upload": false,
-    "skipBodyParsing": false,
-    "swaggerDoc": "",
-    "x": 270,
-    "y": 160,
-    "wires": [["57e27369e08dcfb5"]]
-  },
-  {
-    "id": "bfcacad6ae99234b",
-    "type": "http response",
-    "z": "2aeb66193b434c4b",
-    "name": "",
-    "statusCode": "",
-    "headers": {},
-    "x": 870,
-    "y": 160,
-    "wires": []
-  },
-  {
-    "id": "94169b02dd1f8a47",
-    "type": "change",
-    "z": "2aeb66193b434c4b",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "headers",
-        "pt": "msg",
-        "to": "{     \"Content-Type\": \"text/csv; charset=utf-8\",     \"Content-Disposition\": \"attachment; filename=\\\"log.csv\\\"\" }",
-        "tot": "jsonata"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 680,
-    "y": 160,
-    "wires": [["bfcacad6ae99234b"]]
-  }
+    {
+        "id": "7d2f5d9e383bdab4",
+        "type": "tab",
+        "label": "pageServe",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bd06020514c0176d",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "050ef760976f2d6e",
+        "type": "tab",
+        "label": "borrowing/employeeCheck",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "50071d41aac5805d",
+        "type": "tab",
+        "label": "alcoholCheck",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "fc52afac86ef993d",
+        "type": "tab",
+        "label": "getLockerStatuses",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ed42732c80150553",
+        "type": "tab",
+        "label": "borrowingKey",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "cf0d353bb582c2a4",
+        "type": "tab",
+        "label": "return/employees",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d3c6b2c525f179e1",
+        "type": "tab",
+        "label": "returningKey",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2aeb66193b434c4b",
+        "type": "tab",
+        "label": "csvDownload",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f1738451fe9af7df",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "e77bc779b8487f89",
+        "type": "http in",
+        "z": "7d2f5d9e383bdab4",
+        "name": "root_in",
+        "url": "/",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "9d247692988b3e49"
+            ]
+        ]
+    },
+    {
+        "id": "9d247692988b3e49",
+        "type": "file in",
+        "z": "7d2f5d9e383bdab4",
+        "name": "index.html_read",
+        "filename": "public/pages/index.html",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 360,
+        "y": 300,
+        "wires": [
+            [
+                "624adcdd788f6731"
+            ]
+        ]
+    },
+    {
+        "id": "624adcdd788f6731",
+        "type": "http response",
+        "z": "7d2f5d9e383bdab4",
+        "name": "root_response",
+        "statusCode": "200",
+        "headers": {},
+        "x": 620,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9fdb4fb3f9911d38",
+        "type": "http in",
+        "z": "7d2f5d9e383bdab4",
+        "name": "borrowing_in",
+        "url": "/borrowing",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 400,
+        "wires": [
+            [
+                "b72bae6c310a8d11"
+            ]
+        ]
+    },
+    {
+        "id": "b72bae6c310a8d11",
+        "type": "file in",
+        "z": "7d2f5d9e383bdab4",
+        "name": "borrowing.html_read",
+        "filename": "public/pages/borrowing.html",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 420,
+        "y": 400,
+        "wires": [
+            [
+                "29a472416b4dca66"
+            ]
+        ]
+    },
+    {
+        "id": "29a472416b4dca66",
+        "type": "http response",
+        "z": "7d2f5d9e383bdab4",
+        "name": "borrowing_response",
+        "statusCode": "200",
+        "headers": {},
+        "x": 680,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7f145836094e5887",
+        "type": "mqtt out",
+        "z": "bd06020514c0176d",
+        "name": "m5/request/rfid",
+        "topic": "m5/request/rfid",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1738451fe9af7df",
+        "x": 770,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3844667ef9823993",
+        "type": "mqtt in",
+        "z": "bd06020514c0176d",
+        "name": "",
+        "topic": "m5/response/rfid",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "f1738451fe9af7df",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "daf22cd6958940c8"
+            ]
+        ]
+    },
+    {
+        "id": "67fb1b9727fd8b70",
+        "type": "change",
+        "z": "bd06020514c0176d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "isWaitingRFID",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "httpResponse",
+                "pt": "flow",
+                "to": "res",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca7fb674ebc0e506",
+        "type": "change",
+        "z": "bd06020514c0176d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "isWaitingRFID",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "res",
+                "pt": "msg",
+                "to": "httpResponse",
+                "tot": "flow"
+            },
+            {
+                "t": "delete",
+                "p": "httpResponse",
+                "pt": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 440,
+        "wires": [
+            [
+                "f7c903891bf3cae1"
+            ]
+        ]
+    },
+    {
+        "id": "daf22cd6958940c8",
+        "type": "switch",
+        "z": "bd06020514c0176d",
+        "name": "",
+        "property": "isWaitingRFID",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 400,
+        "wires": [
+            [
+                "ca7fb674ebc0e506",
+                "aa4fdcdb351735e4"
+            ]
+        ]
+    },
+    {
+        "id": "f5db06eb9c6ccab0",
+        "type": "http in",
+        "z": "bd06020514c0176d",
+        "name": "",
+        "url": "/a",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 260,
+        "wires": [
+            [
+                "67fb1b9727fd8b70",
+                "7f145836094e5887",
+                "02b1ddec794b7b3d"
+            ]
+        ]
+    },
+    {
+        "id": "02b1ddec794b7b3d",
+        "type": "debug",
+        "z": "bd06020514c0176d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "aa4fdcdb351735e4",
+        "type": "debug",
+        "z": "bd06020514c0176d",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f7c903891bf3cae1",
+        "type": "http response",
+        "z": "bd06020514c0176d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 870,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "1de5113790b714e5",
+        "type": "csv",
+        "z": "050ef760976f2d6e",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "employee_id,employee_name",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 970,
+        "y": 220,
+        "wires": [
+            [
+                "e8c4b9e587b6dba5"
+            ]
+        ]
+    },
+    {
+        "id": "c26a206919a9df80",
+        "type": "file in",
+        "z": "050ef760976f2d6e",
+        "name": "readEmployeeList",
+        "filename": "employee.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 790,
+        "y": 220,
+        "wires": [
+            [
+                "1de5113790b714e5"
+            ]
+        ]
+    },
+    {
+        "id": "0ea8a1b1bec165db",
+        "type": "inject",
+        "z": "050ef760976f2d6e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "17f3b66032",
+        "payloadType": "str",
+        "x": 210,
+        "y": 220,
+        "wires": [
+            [
+                "739d9fcd3d2e8544"
+            ]
+        ]
+    },
+    {
+        "id": "54f35b002661c7de",
+        "type": "http in",
+        "z": "050ef760976f2d6e",
+        "name": "",
+        "url": "/borrowing/employees",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 120,
+        "wires": [
+            [
+                "f97346a22108dd90",
+                "bbeeb41921998f77"
+            ]
+        ]
+    },
+    {
+        "id": "739d9fcd3d2e8544",
+        "type": "switch",
+        "z": "050ef760976f2d6e",
+        "name": "",
+        "property": "waitingGetEmployeeRequest",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 390,
+        "y": 220,
+        "wires": [
+            [
+                "131303ac379e2104"
+            ],
+            [
+                "8dbd31f3a9253228"
+            ]
+        ]
+    },
+    {
+        "id": "131303ac379e2104",
+        "type": "change",
+        "z": "050ef760976f2d6e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "searchId",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 220,
+        "wires": [
+            [
+                "c26a206919a9df80"
+            ]
+        ]
+    },
+    {
+        "id": "e8c4b9e587b6dba5",
+        "type": "function",
+        "z": "050ef760976f2d6e",
+        "name": "matchDetermination",
+        "func": "const waitingMsg = flow.get(\"waitingGetEmployeeRequest\");\n\nconst employeeList = msg.payload;\n\nconst targetId = msg.searchId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n// --- 応答メッセージの作成 ---\nmsg.req = waitingMsg.req;\nmsg.res = waitingMsg.res;\n\nif (matchedData) {\n    msg.employeeData = matchedData;\n} else {\n    msg.payload = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\n\nflow.set(\"waitingGetEmployeeRequest\", null);\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 220,
+        "wires": [
+            [
+                "5f23d4c3e1805e9d"
+            ]
+        ]
+    },
+    {
+        "id": "f97346a22108dd90",
+        "type": "function",
+        "z": "050ef760976f2d6e",
+        "name": "setWaitingGetEmployeeRequest",
+        "func": "flow.set(\"waitingGetEmployeeRequest\", msg);\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3ee65ab17649973f",
+        "type": "http response",
+        "z": "050ef760976f2d6e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1570,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "8dbd31f3a9253228",
+        "type": "change",
+        "z": "050ef760976f2d6e",
+        "name": "error",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\":\"Not Found\",\"message\":\"社員が取得できませんでした\"}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "404",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 320,
+        "wires": [
+            [
+                "aa6c476d620a440f"
+            ]
+        ]
+    },
+    {
+        "id": "aa6c476d620a440f",
+        "type": "change",
+        "z": "050ef760976f2d6e",
+        "name": "setRequestAndResponse",
+        "rules": [
+            {
+                "t": "set",
+                "p": "req",
+                "pt": "msg",
+                "to": "waitingGetEmployeeRequest.req",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "res",
+                "pt": "msg",
+                "to": "waitingGetEmployeeRequest.res",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 320,
+        "wires": [
+            [
+                "3ee65ab17649973f"
+            ]
+        ]
+    },
+    {
+        "id": "bbeeb41921998f77",
+        "type": "mqtt out",
+        "z": "050ef760976f2d6e",
+        "name": "m5/request/rfid",
+        "topic": "m5/request/rfid",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1738451fe9af7df",
+        "x": 520,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b5a8c474efcde37c",
+        "type": "mqtt in",
+        "z": "050ef760976f2d6e",
+        "name": "",
+        "topic": "m5/response/rfid",
+        "qos": "1",
+        "datatype": "utf8",
+        "broker": "f1738451fe9af7df",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 280,
+        "wires": [
+            [
+                "739d9fcd3d2e8544"
+            ]
+        ]
+    },
+    {
+        "id": "7b74332786237cef",
+        "type": "function",
+        "z": "050ef760976f2d6e",
+        "name": "updateLockerStatus",
+        "func": "const lockerList = msg.payload;\n\n// --- 検索処理 ---\nmsg.lockerData = lockerList.find(row => String(row.employee_borrowing_id) === String(msg.employeeData.employee_id));\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 460,
+        "wires": [
+            [
+                "05c63cb54f3e6a05"
+            ]
+        ]
+    },
+    {
+        "id": "44d4185c54819c74",
+        "type": "csv",
+        "z": "050ef760976f2d6e",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "locker_id,status,employee_borrowing_id",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 550,
+        "y": 460,
+        "wires": [
+            [
+                "7b74332786237cef"
+            ]
+        ]
+    },
+    {
+        "id": "31eb32da1be80ccb",
+        "type": "file in",
+        "z": "050ef760976f2d6e",
+        "name": "readLockerList",
+        "filename": "locker.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 380,
+        "y": 460,
+        "wires": [
+            [
+                "44d4185c54819c74"
+            ]
+        ]
+    },
+    {
+        "id": "5f23d4c3e1805e9d",
+        "type": "switch",
+        "z": "050ef760976f2d6e",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "404",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1350,
+        "y": 220,
+        "wires": [
+            [
+                "3ee65ab17649973f"
+            ],
+            [
+                "31eb32da1be80ccb"
+            ]
+        ]
+    },
+    {
+        "id": "05c63cb54f3e6a05",
+        "type": "switch",
+        "z": "050ef760976f2d6e",
+        "name": "",
+        "property": "lockerData",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 970,
+        "y": 460,
+        "wires": [
+            [
+                "13a67c94070f9af6"
+            ],
+            [
+                "f74a903a4315b269"
+            ]
+        ]
+    },
+    {
+        "id": "13a67c94070f9af6",
+        "type": "change",
+        "z": "050ef760976f2d6e",
+        "name": "setEmployeeData",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "employeeData",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "200",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 420,
+        "wires": [
+            [
+                "3ee65ab17649973f"
+            ]
+        ]
+    },
+    {
+        "id": "f74a903a4315b269",
+        "type": "change",
+        "z": "050ef760976f2d6e",
+        "name": "error",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\":\"Forbidden\",\"message\":\"既に鍵を借用しています\"}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "403",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1150,
+        "y": 480,
+        "wires": [
+            [
+                "3ee65ab17649973f"
+            ]
+        ]
+    },
+    {
+        "id": "63cb31f9f15dfcb0",
+        "type": "inject",
+        "z": "50071d41aac5805d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "True",
+        "payloadType": "str",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "da6ed4a774f255b5"
+            ]
+        ]
+    },
+    {
+        "id": "41667e3788af6e15",
+        "type": "http in",
+        "z": "50071d41aac5805d",
+        "name": "",
+        "url": "/alcohol/check/:employeeId",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "479bb4a31a313162",
+                "d2944f77d59cb361"
+            ]
+        ]
+    },
+    {
+        "id": "f04712d79d73f6fe",
+        "type": "switch",
+        "z": "50071d41aac5805d",
+        "name": "",
+        "property": "isNormal",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "True",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 930,
+        "y": 280,
+        "wires": [
+            [
+                "571cfbf3b2e8f630"
+            ],
+            [
+                "bc5845f2e862e0fc"
+            ]
+        ]
+    },
+    {
+        "id": "da6ed4a774f255b5",
+        "type": "change",
+        "z": "50071d41aac5805d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "isNormal",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 280,
+        "wires": [
+            [
+                "c49a37e19345f089"
+            ]
+        ]
+    },
+    {
+        "id": "479bb4a31a313162",
+        "type": "function",
+        "z": "50071d41aac5805d",
+        "name": "setWaitingGetAlcoholRequest",
+        "func": "flow.set(\"waitingGetAlcoholRequest\", msg);\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e82d2f732d4dc904",
+        "type": "http response",
+        "z": "50071d41aac5805d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1330,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "571cfbf3b2e8f630",
+        "type": "change",
+        "z": "50071d41aac5805d",
+        "name": "normal",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"alcoholCheck\": msg.alcoholCheck}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "200",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1170,
+        "y": 280,
+        "wires": [
+            [
+                "e82d2f732d4dc904"
+            ]
+        ]
+    },
+    {
+        "id": "282a2915d43f46f0",
+        "type": "change",
+        "z": "50071d41aac5805d",
+        "name": "error",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\": \"Not Found\",\"message\": \"アルコール検査判定が取得できませんでした\"}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "404",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1170,
+        "y": 360,
+        "wires": [
+            [
+                "e82d2f732d4dc904"
+            ]
+        ]
+    },
+    {
+        "id": "705bcc949c0e7d01",
+        "type": "change",
+        "z": "50071d41aac5805d",
+        "name": "setRequestAndResponse",
+        "rules": [
+            {
+                "t": "set",
+                "p": "req",
+                "pt": "msg",
+                "to": "waitingGetAlcoholRequest.req",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "res",
+                "pt": "msg",
+                "to": "waitingGetAlcoholRequest.res",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 280,
+        "wires": [
+            [
+                "f04712d79d73f6fe"
+            ]
+        ]
+    },
+    {
+        "id": "d2944f77d59cb361",
+        "type": "mqtt out",
+        "z": "50071d41aac5805d",
+        "name": "m5/request/alcohol",
+        "topic": "m5/request/alcohol",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1738451fe9af7df",
+        "x": 510,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "04f4167634741e08",
+        "type": "mqtt in",
+        "z": "50071d41aac5805d",
+        "name": "",
+        "topic": "m5/response/alcohol",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "f1738451fe9af7df",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "da6ed4a774f255b5"
+            ]
+        ]
+    },
+    {
+        "id": "c49a37e19345f089",
+        "type": "switch",
+        "z": "50071d41aac5805d",
+        "name": "",
+        "property": "waitingGetAlcoholRequest",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 280,
+        "wires": [
+            [
+                "705bcc949c0e7d01"
+            ],
+            [
+                "282a2915d43f46f0"
+            ]
+        ]
+    },
+    {
+        "id": "495faa4f99228b7f",
+        "type": "change",
+        "z": "50071d41aac5805d",
+        "name": "abnormalAlcohol",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\": \"Method Not Allowed\",\"message\": \"アルコールが検出されたので、社用車を借用することができません\"}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "403",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1110,
+        "y": 480,
+        "wires": [
+            [
+                "e82d2f732d4dc904"
+            ]
+        ]
+    },
+    {
+        "id": "724667aef5961a62",
+        "type": "csv",
+        "z": "50071d41aac5805d",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "employee_id,employee_name",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 390,
+        "y": 480,
+        "wires": [
+            [
+                "71200c81aea23840"
+            ]
+        ]
+    },
+    {
+        "id": "bc5845f2e862e0fc",
+        "type": "file in",
+        "z": "50071d41aac5805d",
+        "name": "readEmployeeList",
+        "filename": "employee.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 210,
+        "y": 480,
+        "wires": [
+            [
+                "724667aef5961a62"
+            ]
+        ]
+    },
+    {
+        "id": "71200c81aea23840",
+        "type": "function",
+        "z": "50071d41aac5805d",
+        "name": "matchDetermination",
+        "func": "const employeeList = msg.payload;\n\nconst targetId = msg.req.params.employeeId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n\nif (matchedData) {\n    msg.employeeData = matchedData;\n    msg.statusCode = 200;\n} else {\n    msg.employeeData = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 480,
+        "wires": [
+            [
+                "6d765d6f68e67726"
+            ]
+        ]
+    },
+    {
+        "id": "6d765d6f68e67726",
+        "type": "switch",
+        "z": "50071d41aac5805d",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "404",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 480,
+        "wires": [
+            [
+                "95b676772fcd88b8"
+            ],
+            [
+                "29ef5c4a3a69bdf7"
+            ]
+        ]
+    },
+    {
+        "id": "95b676772fcd88b8",
+        "type": "change",
+        "z": "50071d41aac5805d",
+        "name": "error",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\": \"Not Found\",\"message\": \"ユーザ取得に失敗しました\"}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "404",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 990,
+        "y": 400,
+        "wires": [
+            [
+                "e82d2f732d4dc904"
+            ]
+        ]
+    },
+    {
+        "id": "8c5033a5d02c1a2a",
+        "type": "file",
+        "z": "50071d41aac5805d",
+        "name": "writeLog",
+        "filename": "log.csv",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 800,
+        "y": 580,
+        "wires": [
+            [
+                "495faa4f99228b7f"
+            ]
+        ]
+    },
+    {
+        "id": "29ef5c4a3a69bdf7",
+        "type": "function",
+        "z": "50071d41aac5805d",
+        "name": "createLogDataFormat",
+        "func": "// --現在時刻取得ロジック--\nconst now = new Date();\n\nconst jstString = now.toLocaleString(\"en-US\", { timeZone: \"Asia/Tokyo\" });\nconst jstDate = new Date(jstString);\n\nconst yyyy = jstDate.getFullYear();\nconst MM = String(jstDate.getMonth() + 1).padStart(2, '0');\nconst dd = String(jstDate.getDate()).padStart(2, '0');\nconst hh = String(jstDate.getHours()).padStart(2, '0');\nconst mm = String(jstDate.getMinutes()).padStart(2, '0');\nconst ss = String(jstDate.getSeconds()).padStart(2, '0');\n\nconst formattedTime = `${yyyy}年${MM}月${dd}日 ${hh}時${mm}分${ss}秒`;\n\n\n// --csv記録データ構築--\nconst logData = {\n    timestamp: formattedTime,\n    employee_id: msg.employeeData.employee_id || \"unknown\", // 社員ID\n    employee_name: msg.employeeData.employee_name || \"unknown\", // 社員名\n    locker_id: \"\",\n    status: \"アルコール値異常\",\n};\n\nmsg.payload = logData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 580,
+        "wires": [
+            [
+                "04bca447eb4c31db"
+            ]
+        ]
+    },
+    {
+        "id": "04bca447eb4c31db",
+        "type": "csv",
+        "z": "50071d41aac5805d",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "timestamp,employee_id,employee_name,locker_id,status",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": "",
+        "x": 650,
+        "y": 580,
+        "wires": [
+            [
+                "8c5033a5d02c1a2a"
+            ]
+        ]
+    },
+    {
+        "id": "1cef734597641224",
+        "type": "inject",
+        "z": "50071d41aac5805d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "False",
+        "payloadType": "str",
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "da6ed4a774f255b5"
+            ]
+        ]
+    },
+    {
+        "id": "6fb540cd2f75ddc6",
+        "type": "csv",
+        "z": "fc52afac86ef993d",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "locker_id,status,employee_borrowing_id",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 770,
+        "y": 180,
+        "wires": [
+            [
+                "b677b505beb076ac"
+            ]
+        ]
+    },
+    {
+        "id": "e24038d425c61987",
+        "type": "file in",
+        "z": "fc52afac86ef993d",
+        "name": "readLockerList",
+        "filename": "locker.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 580,
+        "y": 180,
+        "wires": [
+            [
+                "6fb540cd2f75ddc6"
+            ]
+        ]
+    },
+    {
+        "id": "ed4fc63e0edc8af1",
+        "type": "http in",
+        "z": "fc52afac86ef993d",
+        "name": "",
+        "url": "/lockers",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "e24038d425c61987"
+            ]
+        ]
+    },
+    {
+        "id": "b677b505beb076ac",
+        "type": "http response",
+        "z": "fc52afac86ef993d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 950,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "d0ad1b80cf365465",
+        "type": "http in",
+        "z": "ed42732c80150553",
+        "name": "",
+        "url": "/borrowing",
+        "method": "post",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "6191e39823b693d3",
+                "3c2a6aeec8ba4875"
+            ]
+        ]
+    },
+    {
+        "id": "6191e39823b693d3",
+        "type": "function",
+        "z": "ed42732c80150553",
+        "name": "setWaitingBorrowingKeyRequest",
+        "func": "flow.set(\"waitingBorrowingKeyRequest\", msg);\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "98c5d4b4ab243ade",
+        "type": "file",
+        "z": "ed42732c80150553",
+        "name": "writeLog",
+        "filename": "log.csv",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1040,
+        "y": 520,
+        "wires": [
+            [
+                "861a178dfd39814c"
+            ]
+        ]
+    },
+    {
+        "id": "48f19e1857121e93",
+        "type": "function",
+        "z": "ed42732c80150553",
+        "name": "createLogDataFormat",
+        "func": "// --現在時刻取得ロジック--\nconst now = new Date();\n\nconst jstString = now.toLocaleString(\"en-US\", { timeZone: \"Asia/Tokyo\" });\nconst jstDate = new Date(jstString);\n\nconst yyyy = jstDate.getFullYear();\nconst MM = String(jstDate.getMonth() + 1).padStart(2, '0');\nconst dd = String(jstDate.getDate()).padStart(2, '0');\nconst hh = String(jstDate.getHours()).padStart(2, '0');\nconst mm = String(jstDate.getMinutes()).padStart(2, '0');\nconst ss = String(jstDate.getSeconds()).padStart(2, '0');\n\nconst formattedTime = `${yyyy}年${MM}月${dd}日 ${hh}時${mm}分${ss}秒`;\n\nconst waitingRequest = flow.get(\"waitingBorrowingKeyRequest\");\nconst postBody = (waitingRequest && waitingRequest.payload) ? waitingRequest.payload : {};\n\n// --csv記録データ構築--\nconst logData = {\n    timestamp: formattedTime,\n    employee_id: postBody.employee_id || \"unknown\", // 社員ID\n    employee_name: postBody.employee_name || \"unknown\", // 社員名\n    locker_id: postBody.locker_id || \"unknown\", // 該当ロッカー番号\n    status: \"借用\", // ステータス\n};\n\nmsg.payload = logData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 520,
+        "wires": [
+            [
+                "9fdb11bbd841aa16"
+            ]
+        ]
+    },
+    {
+        "id": "9fdb11bbd841aa16",
+        "type": "csv",
+        "z": "ed42732c80150553",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "timestamp,employee_id,employee_name,locker_id,status",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": "",
+        "x": 890,
+        "y": 520,
+        "wires": [
+            [
+                "98c5d4b4ab243ade"
+            ]
+        ]
+    },
+    {
+        "id": "cb0d2bb01b01f693",
+        "type": "function",
+        "z": "ed42732c80150553",
+        "name": "updateLockerStatus",
+        "func": "const lockerList = msg.payload;\n\nconst targetId = msg.searchLockerId;\n\n// --- 検索処理 ---\nconst matchedData = lockerList.find(row => String(row.locker_id) === String(targetId));\n\nconst waitingRequest = flow.get(\"waitingBorrowingKeyRequest\");\nconst postBody = (waitingRequest && waitingRequest.payload) ? waitingRequest.payload : {};\n\nif (matchedData) {\n    matchedData.status = \"occupation\";\n    matchedData.employee_borrowing_id = postBody.employee_id;\n    msg.payload = lockerList;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 400,
+        "wires": [
+            [
+                "c10d16290ea38bec"
+            ]
+        ]
+    },
+    {
+        "id": "8f3c7661e383d12d",
+        "type": "change",
+        "z": "ed42732c80150553",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "searchLockerId",
+                "pt": "msg",
+                "to": "waitingBorrowingKeyRequest.payload.locker_id",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 210,
+        "y": 400,
+        "wires": [
+            [
+                "22779d1493b55955"
+            ]
+        ]
+    },
+    {
+        "id": "9db0a6673688a25b",
+        "type": "csv",
+        "z": "ed42732c80150553",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "locker_id,status,employee_borrowing_id",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 630,
+        "y": 400,
+        "wires": [
+            [
+                "cb0d2bb01b01f693"
+            ]
+        ]
+    },
+    {
+        "id": "22779d1493b55955",
+        "type": "file in",
+        "z": "ed42732c80150553",
+        "name": "readLockerList",
+        "filename": "locker.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 460,
+        "y": 400,
+        "wires": [
+            [
+                "9db0a6673688a25b"
+            ]
+        ]
+    },
+    {
+        "id": "dbc3bdf709a443a5",
+        "type": "file",
+        "z": "ed42732c80150553",
+        "name": "updateLockerState",
+        "filename": "locker.csv",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1230,
+        "y": 400,
+        "wires": [
+            [
+                "48f19e1857121e93"
+            ]
+        ]
+    },
+    {
+        "id": "c10d16290ea38bec",
+        "type": "csv",
+        "z": "ed42732c80150553",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": "",
+        "x": 1030,
+        "y": 400,
+        "wires": [
+            [
+                "dbc3bdf709a443a5"
+            ]
+        ]
+    },
+    {
+        "id": "c8c096dff3c0ed20",
+        "type": "inject",
+        "z": "ed42732c80150553",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "17f3b66032",
+        "payloadType": "str",
+        "x": 230,
+        "y": 280,
+        "wires": [
+            [
+                "8421e9aa06ab43bd"
+            ]
+        ]
+    },
+    {
+        "id": "8421e9aa06ab43bd",
+        "type": "switch",
+        "z": "ed42732c80150553",
+        "name": "",
+        "property": "waitingBorrowingKeyRequest",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 410,
+        "y": 280,
+        "wires": [
+            [
+                "8f3c7661e383d12d"
+            ],
+            [
+                "d97a818277ff4f58"
+            ]
+        ]
+    },
+    {
+        "id": "1c374b23d381f66e",
+        "type": "http response",
+        "z": "ed42732c80150553",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1630,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "d97a818277ff4f58",
+        "type": "change",
+        "z": "ed42732c80150553",
+        "name": "error",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\": \"Not Found\",\"message\": \"借用処理が失敗しました\"}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "404",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 640,
+        "wires": [
+            [
+                "77588db6923faeb1"
+            ]
+        ]
+    },
+    {
+        "id": "77588db6923faeb1",
+        "type": "change",
+        "z": "ed42732c80150553",
+        "name": "setRequestAndResponse",
+        "rules": [
+            {
+                "t": "set",
+                "p": "req",
+                "pt": "msg",
+                "to": "waitingBorrowingKeyRequest.req",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "res",
+                "pt": "msg",
+                "to": "waitingBorrowingKeyRequest.res",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1410,
+        "y": 520,
+        "wires": [
+            [
+                "1c374b23d381f66e"
+            ]
+        ]
+    },
+    {
+        "id": "861a178dfd39814c",
+        "type": "change",
+        "z": "ed42732c80150553",
+        "name": "OK",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\": \"successful\",\"message\": \"借用処理が成功しました\"}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "200",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 520,
+        "wires": [
+            [
+                "77588db6923faeb1"
+            ]
+        ]
+    },
+    {
+        "id": "3c2a6aeec8ba4875",
+        "type": "mqtt out",
+        "z": "ed42732c80150553",
+        "name": "",
+        "topic": "m5/request/locker",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1738451fe9af7df",
+        "x": 530,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "9ffe751cce4a97a2",
+        "type": "mqtt in",
+        "z": "ed42732c80150553",
+        "name": "",
+        "topic": "m5/response/locker",
+        "qos": "1",
+        "datatype": "utf8",
+        "broker": "f1738451fe9af7df",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 210,
+        "y": 220,
+        "wires": [
+            [
+                "8421e9aa06ab43bd"
+            ]
+        ]
+    },
+    {
+        "id": "e0a679343605f6f5",
+        "type": "csv",
+        "z": "cf0d353bb582c2a4",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "employee_id,employee_name",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 930,
+        "y": 240,
+        "wires": [
+            [
+                "388ad536a2d181be"
+            ]
+        ]
+    },
+    {
+        "id": "be0e10b9ff4c3140",
+        "type": "file in",
+        "z": "cf0d353bb582c2a4",
+        "name": "readEmployeeList",
+        "filename": "employee.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 750,
+        "y": 240,
+        "wires": [
+            [
+                "e0a679343605f6f5"
+            ]
+        ]
+    },
+    {
+        "id": "f584fca6540416f9",
+        "type": "inject",
+        "z": "cf0d353bb582c2a4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "17f3b66032",
+        "payloadType": "str",
+        "x": 170,
+        "y": 240,
+        "wires": [
+            [
+                "33c1db0efd38658b"
+            ]
+        ]
+    },
+    {
+        "id": "9368d6e7eb95ccf0",
+        "type": "http in",
+        "z": "cf0d353bb582c2a4",
+        "name": "",
+        "url": "/employees",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "edb469825602c0cf",
+                "2905578ac7b495cb"
+            ]
+        ]
+    },
+    {
+        "id": "33c1db0efd38658b",
+        "type": "switch",
+        "z": "cf0d353bb582c2a4",
+        "name": "",
+        "property": "waitingGetEmployeeRequest",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 350,
+        "y": 240,
+        "wires": [
+            [
+                "a074e63b518febc6"
+            ],
+            [
+                "6ada10bc97ded973"
+            ]
+        ]
+    },
+    {
+        "id": "a074e63b518febc6",
+        "type": "change",
+        "z": "cf0d353bb582c2a4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "searchId",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 240,
+        "wires": [
+            [
+                "be0e10b9ff4c3140"
+            ]
+        ]
+    },
+    {
+        "id": "388ad536a2d181be",
+        "type": "function",
+        "z": "cf0d353bb582c2a4",
+        "name": "matchDetermination",
+        "func": "const waitingMsg = flow.get(\"waitingGetEmployeeRequest\");\n\nconst employeeList = msg.payload;\n\nconst targetId = msg.searchId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n// --- 応答メッセージの作成 ---\nmsg.req = waitingMsg.req;\nmsg.res = waitingMsg.res;\n\nif (matchedData) {\n    msg.employeeData = matchedData;\n} else {\n    msg.payload = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\n\nflow.set(\"waitingGetEmployeeRequest\", null);\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 240,
+        "wires": [
+            [
+                "864a5eae450978d3"
+            ]
+        ]
+    },
+    {
+        "id": "edb469825602c0cf",
+        "type": "function",
+        "z": "cf0d353bb582c2a4",
+        "name": "setWaitingGetEmployeeRequest",
+        "func": "flow.set(\"waitingGetEmployeeRequest\", msg);\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "864a5eae450978d3",
+        "type": "http response",
+        "z": "cf0d353bb582c2a4",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1430,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6ada10bc97ded973",
+        "type": "change",
+        "z": "cf0d353bb582c2a4",
+        "name": "error",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\":\"Not Found\",\"message\":\"社員が取得できませんでした\"}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "404",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 340,
+        "wires": [
+            [
+                "55838c4588225359"
+            ]
+        ]
+    },
+    {
+        "id": "55838c4588225359",
+        "type": "change",
+        "z": "cf0d353bb582c2a4",
+        "name": "setRequestAndResponse",
+        "rules": [
+            {
+                "t": "set",
+                "p": "req",
+                "pt": "msg",
+                "to": "waitingGetEmployeeRequest.req",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "res",
+                "pt": "msg",
+                "to": "waitingGetEmployeeRequest.res",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 340,
+        "wires": [
+            [
+                "864a5eae450978d3"
+            ]
+        ]
+    },
+    {
+        "id": "2905578ac7b495cb",
+        "type": "mqtt out",
+        "z": "cf0d353bb582c2a4",
+        "name": "m5/request/rfid",
+        "topic": "m5/request/rfid",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1738451fe9af7df",
+        "x": 480,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "6d2227134abf6edc",
+        "type": "mqtt in",
+        "z": "cf0d353bb582c2a4",
+        "name": "",
+        "topic": "m5/response/rfid",
+        "qos": "1",
+        "datatype": "utf8",
+        "broker": "f1738451fe9af7df",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 300,
+        "wires": [
+            [
+                "33c1db0efd38658b"
+            ]
+        ]
+    },
+    {
+        "id": "f9faa64daf7d0604",
+        "type": "http in",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "url": "/return/:employeeId",
+        "method": "post",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 60,
+        "wires": [
+            [
+                "883ce178b0330f1e",
+                "7c1c4916c5d65308"
+            ]
+        ]
+    },
+    {
+        "id": "613e223b6e0b1f93",
+        "type": "file",
+        "z": "d3c6b2c525f179e1",
+        "name": "writeLog",
+        "filename": "log.csv",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 680,
+        "y": 620,
+        "wires": [
+            [
+                "fcd273a7020f8066"
+            ]
+        ]
+    },
+    {
+        "id": "6170a9b7dd1f6a47",
+        "type": "function",
+        "z": "d3c6b2c525f179e1",
+        "name": "createLogDataFormat",
+        "func": "// --現在時刻取得ロジック--\nconst now = new Date();\n\nconst jstString = now.toLocaleString(\"en-US\", { timeZone: \"Asia/Tokyo\" });\nconst jstDate = new Date(jstString);\n\nconst yyyy = jstDate.getFullYear();\nconst MM = String(jstDate.getMonth() + 1).padStart(2, '0');\nconst dd = String(jstDate.getDate()).padStart(2, '0');\nconst hh = String(jstDate.getHours()).padStart(2, '0');\nconst mm = String(jstDate.getMinutes()).padStart(2, '0');\nconst ss = String(jstDate.getSeconds()).padStart(2, '0');\n\nconst formattedTime = `${yyyy}年${MM}月${dd}日 ${hh}時${mm}分${ss}秒`;\n\n\n// --csv記録データ構築--\nconst logData = {\n    timestamp: formattedTime,\n    employee_id: msg.employeeData.employee_id || \"unknown\", // 社員ID\n    employee_name: msg.employeeData.employee_name || \"unknown\", // 社員名\n    locker_id: msg.lockerId || \"unknown\", // 該当ロッカー番号\n    status: \"返却\", // ステータス\n};\n\nmsg.payload = logData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 620,
+        "wires": [
+            [
+                "92454275a2b0f81f"
+            ]
+        ]
+    },
+    {
+        "id": "92454275a2b0f81f",
+        "type": "csv",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "timestamp,employee_id,employee_name,locker_id,status",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": "",
+        "x": 530,
+        "y": 620,
+        "wires": [
+            [
+                "613e223b6e0b1f93"
+            ]
+        ]
+    },
+    {
+        "id": "35bc57343fd7a47c",
+        "type": "function",
+        "z": "d3c6b2c525f179e1",
+        "name": "updateLockerStatus",
+        "func": "const lockerList = msg.payload;\n\n// --- 検索処理 ---\nconst matchedData = lockerList.find(row => String(row.employee_borrowing_id) === String(msg.req.params.employeeId));\n\n\nif (matchedData) {\n    matchedData.status = \"vacancy\";\n    matchedData.employee_borrowing_id = \"\";\n    msg.lockerId = matchedData.locker_id;\n    msg.payload = lockerList;\n}\nelse {\n    msg.statusCode = 404;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 500,
+        "wires": [
+            [
+                "85aaf2c09a06d69d"
+            ]
+        ]
+    },
+    {
+        "id": "1a71b26e6243e9f4",
+        "type": "csv",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "locker_id,status,employee_borrowing_id",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 450,
+        "y": 500,
+        "wires": [
+            [
+                "35bc57343fd7a47c"
+            ]
+        ]
+    },
+    {
+        "id": "58e9ecedd7a419cb",
+        "type": "file in",
+        "z": "d3c6b2c525f179e1",
+        "name": "readLockerList",
+        "filename": "locker.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 280,
+        "y": 500,
+        "wires": [
+            [
+                "1a71b26e6243e9f4"
+            ]
+        ]
+    },
+    {
+        "id": "44dcb5c61d37d0d2",
+        "type": "file",
+        "z": "d3c6b2c525f179e1",
+        "name": "updateLockerState",
+        "filename": "locker.csv",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1210,
+        "y": 500,
+        "wires": [
+            [
+                "6170a9b7dd1f6a47"
+            ]
+        ]
+    },
+    {
+        "id": "b33b7c6240d49d7d",
+        "type": "csv",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": "",
+        "x": 1010,
+        "y": 500,
+        "wires": [
+            [
+                "44dcb5c61d37d0d2"
+            ]
+        ]
+    },
+    {
+        "id": "fd9413c99d1a6f04",
+        "type": "http response",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1210,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "fcd273a7020f8066",
+        "type": "change",
+        "z": "d3c6b2c525f179e1",
+        "name": "OK",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\": \"successful\",\"message\": \"返却処理が成功しました\"}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "200",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 620,
+        "wires": [
+            [
+                "fd9413c99d1a6f04"
+            ]
+        ]
+    },
+    {
+        "id": "46fb0a52cb3a7949",
+        "type": "csv",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "employee_id,employee_name",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 450,
+        "y": 400,
+        "wires": [
+            [
+                "16a7edac59d54647"
+            ]
+        ]
+    },
+    {
+        "id": "fc2e3612aac00590",
+        "type": "file in",
+        "z": "d3c6b2c525f179e1",
+        "name": "readEmployeeList",
+        "filename": "employee.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 270,
+        "y": 400,
+        "wires": [
+            [
+                "46fb0a52cb3a7949"
+            ]
+        ]
+    },
+    {
+        "id": "16a7edac59d54647",
+        "type": "function",
+        "z": "d3c6b2c525f179e1",
+        "name": "matchDetermination",
+        "func": "const employeeList = msg.payload;\n\nconst targetId = msg.req.params.employeeId;\n\n// --- 検索処理 ---\nconst matchedData = employeeList.find(row => String(row.employee_id) === String(targetId));\n\n\nif (matchedData) {\n    msg.employeeData = matchedData;\n} else {\n    msg.employeeData = {\n        status: \"Not Found\",\n        message: \"IDが登録されていません\",\n        inputId: targetId\n    };\n    msg.statusCode = 404;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "eab21a5c401c2857"
+            ]
+        ]
+    },
+    {
+        "id": "eab21a5c401c2857",
+        "type": "switch",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "404",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 850,
+        "y": 400,
+        "wires": [
+            [
+                "fcb56a36ea02d179"
+            ],
+            [
+                "58e9ecedd7a419cb"
+            ]
+        ]
+    },
+    {
+        "id": "fcb56a36ea02d179",
+        "type": "change",
+        "z": "d3c6b2c525f179e1",
+        "name": "error",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"status\": \"Not Found\",\"message\": \"返却処理が失敗しました\"}",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "404",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1150,
+        "y": 420,
+        "wires": [
+            [
+                "fd9413c99d1a6f04"
+            ]
+        ]
+    },
+    {
+        "id": "85aaf2c09a06d69d",
+        "type": "switch",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "404",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 830,
+        "y": 500,
+        "wires": [
+            [
+                "fcb56a36ea02d179"
+            ],
+            [
+                "b33b7c6240d49d7d"
+            ]
+        ]
+    },
+    {
+        "id": "7c1c4916c5d65308",
+        "type": "function",
+        "z": "d3c6b2c525f179e1",
+        "name": "setWaitingReturningKeyRequest",
+        "func": "flow.set(\"waitingReturningKeyRequest\", msg);\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "883ce178b0330f1e",
+        "type": "mqtt out",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "topic": "m5/request/locker",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1738451fe9af7df",
+        "x": 530,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "2db0957825d64368",
+        "type": "change",
+        "z": "d3c6b2c525f179e1",
+        "name": "setRequestAndResponse",
+        "rules": [
+            {
+                "t": "set",
+                "p": "req",
+                "pt": "msg",
+                "to": "waitingReturningKeyRequest.req",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "res",
+                "pt": "msg",
+                "to": "waitingReturningKeyRequest.res",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 280,
+        "wires": [
+            [
+                "fc2e3612aac00590"
+            ]
+        ]
+    },
+    {
+        "id": "1660ef8f50e74237",
+        "type": "inject",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "17f3b66032",
+        "payloadType": "str",
+        "x": 290,
+        "y": 280,
+        "wires": [
+            [
+                "8d98dab15f077ef3"
+            ]
+        ]
+    },
+    {
+        "id": "8d98dab15f077ef3",
+        "type": "switch",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "property": "waitingReturningKeyRequest",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 280,
+        "wires": [
+            [
+                "2db0957825d64368"
+            ],
+            [
+                "fcb56a36ea02d179"
+            ]
+        ]
+    },
+    {
+        "id": "9159ddd33c4f6105",
+        "type": "mqtt in",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "topic": "m5/response/locker",
+        "qos": "1",
+        "datatype": "utf8",
+        "broker": "f1738451fe9af7df",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 220,
+        "wires": [
+            [
+                "8d98dab15f077ef3"
+            ]
+        ]
+    },
+    {
+        "id": "57e27369e08dcfb5",
+        "type": "file in",
+        "z": "2aeb66193b434c4b",
+        "name": "readLogs",
+        "filename": "log.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 480,
+        "y": 160,
+        "wires": [
+            [
+                "94169b02dd1f8a47"
+            ]
+        ]
+    },
+    {
+        "id": "a2cc7b5e5489b7d7",
+        "type": "http in",
+        "z": "2aeb66193b434c4b",
+        "name": "",
+        "url": "/download/logs",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "57e27369e08dcfb5"
+            ]
+        ]
+    },
+    {
+        "id": "bfcacad6ae99234b",
+        "type": "http response",
+        "z": "2aeb66193b434c4b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 870,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "94169b02dd1f8a47",
+        "type": "change",
+        "z": "2aeb66193b434c4b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{     \"Content-Type\": \"text/csv; charset=utf-8\",     \"Content-Disposition\": \"attachment; filename=\\\"log.csv\\\"\" }",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 160,
+        "wires": [
+            [
+                "bfcacad6ae99234b"
+            ]
+        ]
+    }
 ]
