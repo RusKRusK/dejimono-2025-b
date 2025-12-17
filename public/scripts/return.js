@@ -47,17 +47,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // 完了後の処理
-      hideModal();
       await showToastAndWait("返却が完了しました");
+      hideModal();
 
       window.location.href = "/";
     } catch (error) {
       console.error(error);
-      hideModal();
       setTimeout(async () => {
         await showToastAndWait("エラーが発生しました: " + error.message, true);
         window.location.href = "/";
       }, 100);
+      hideModal();
     }
   });
 });

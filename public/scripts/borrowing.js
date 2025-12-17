@@ -119,20 +119,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         container.appendChild(lockerDiv);
       });
     } else {
-      hideModal();
       setTimeout(async () => {
         await showToastAndWait("アルコールチェックに失敗しました", true);
         window.location.href = "/";
       }, 10);
+      hideModal();
     }
   } catch (error) {
-    // エラー発生時はモーダルを消してからアラートを出す
-    hideModal();
     console.error("Process failed:", error);
 
     setTimeout(async () => {
       await showToastAndWait("借用処理に失敗しました", true);
       window.location.href = "/";
     }, 100);
+    hideModal();
   }
 });
