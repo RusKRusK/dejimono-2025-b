@@ -25,15 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const empRes = await fetch("/return/employees");
 
       if (empRes.status !== 200) {
-        throw new Error("社員確認に失敗しました");
+        throw new Error(employeeData.message);
       }
 
-      const empData = await empRes.json();
-      const employeeId = empData.employee_id;
+      const employeeData = await empRes.json();
+      const employeeId = employeeData.employee_id;
 
       if (!employeeId) {
         throw new Error("社員IDが取得できませんでした");
       }
+      await showToastAndWait("社員確認に成功しました");
 
       showModal("返却処理中...");
 
