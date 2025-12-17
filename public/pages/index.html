@@ -1,37 +1,36 @@
 <!doctype html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles/styles.css" />
-    <title>鍵管理システム</title>
-  </head>
-  <body>
-    <div class="key-management-container">
-      <a href="/download/logs" class="download-icon" title="ログをダウンロード">
-        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-          <path
-            d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
-            fill="currentColor"
-          />
-        </svg>
-      </a>
-      <h1>鍵管理システム</h1>
-      <div class="button-group">
-        <button id="borrowing-button" class="btn">貸出</button>
-        <button id="return-button" class="btn">返却</button>
-      </div>
-    </div>
 
-    <div id="modal-overlay" class="modal-overlay hidden">
-      <div class="modal-content">
-        <p id="modal-message">メッセージ</p>
-      </div>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/styles.css" />
+  <title>鍵管理システム</title>
+</head>
 
-    <script src="https://riversun.github.io/jsframe/jsframe.js"></script>
-    <script src="../scripts/toast-utils.js"></script>
-    <script rel="module" src="../scripts/selectMode.js"></script>
-    <script rel="module" src="../scripts/return.js"></script>
-  </body>
+<body>
+  <div class="key-management-container">
+    <a href="/download/logs" class="download-icon" title="ログをダウンロード">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor" />
+      </svg>
+    </a>
+    <h1>鍵管理システム</h1>
+    <div class="button-group">
+      <button id="borrowing-button" class="btn">貸出</button>
+      <button id="return-button" class="btn">返却</button>
+    </div>
+  </div>
+
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal-content">
+      <p id="modal-message">メッセージ</p>
+    </div>
+  </div>
+
+  <script src="../scripts/toast-utils.js"></script>
+  <script rel="module" src="../scripts/selectMode.js"></script>
+  <script rel="module" src="../scripts/return.js"></script>
+</body>
+
 </html>
