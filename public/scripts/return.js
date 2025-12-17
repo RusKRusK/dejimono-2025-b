@@ -25,14 +25,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const empRes = await fetch("/employees");
 
       if (empRes.status !== 200) {
-        throw new Error("社員確認に失敗しました");
+        throw new Error("社員確認に失敗しました", true);
       }
 
       const empData = await empRes.json();
       const employeeId = empData.employee_id;
 
       if (!employeeId) {
-        throw new Error("社員IDが取得できませんでした");
+        throw new Error("社員IDが取得できませんでした", true);
       }
 
       showModal("返却処理中...");
@@ -43,19 +43,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (!returnRes.ok) {
-        throw new Error("返却処理に失敗しました");
+        throw new Error("返却処理に失敗しました", true);
       }
 
       // 完了後の処理
+      await showToastAndWait("返却が完了しました");
       hideModal();
-      alert("返却が完了しました");
 
       window.location.href = "/";
     } catch (error) {
       console.error(error);
-      hideModal();
-      setTimeout(() => {
-        alert("エラーが発生しました: " + error.message);
+      setTimeout(async () => {
+        await showToastAndWait("エラーが発生しました: " + error.message, true);
+        hideModal();
         window.location.href = "/";
       }, 100);
     }
