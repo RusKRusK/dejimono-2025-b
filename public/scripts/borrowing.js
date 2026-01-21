@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           btn.appendChild(loader);
 
           try {
-            const postRes = await fetch("/borrowing", {
+            const postRes = await fetch(`/borrowing/${data.locker_id}`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({

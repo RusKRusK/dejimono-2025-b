@@ -67,7 +67,7 @@
         "id": "f1738451fe9af7df",
         "type": "mqtt-broker",
         "name": "",
-        "broker": "localhost",
+        "broker": "192.168.11.5",
         "port": 1883,
         "clientid": "",
         "autoConnect": true,
@@ -1334,17 +1334,16 @@
         "type": "http in",
         "z": "ed42732c80150553",
         "name": "",
-        "url": "/borrowing",
+        "url": "/borrowing/:lockerId",
         "method": "post",
         "upload": false,
         "skipBodyParsing": false,
         "swaggerDoc": "",
-        "x": 220,
+        "x": 250,
         "y": 140,
         "wires": [
             [
-                "6191e39823b693d3",
-                "3c2a6aeec8ba4875"
+                "6191e39823b693d3"
             ]
         ]
     },
@@ -1353,7 +1352,7 @@
         "type": "function",
         "z": "ed42732c80150553",
         "name": "setWaitingBorrowingKeyRequest",
-        "func": "flow.set(\"waitingBorrowingKeyRequest\", msg);\n\nreturn null;\n",
+        "func": "flow.set(\"waitingBorrowingKeyRequest\", msg);\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1363,7 +1362,9 @@
         "x": 540,
         "y": 140,
         "wires": [
-            []
+            [
+                "277b157b41d98a96"
+            ]
         ]
     },
     {
@@ -1459,7 +1460,7 @@
                 "t": "set",
                 "p": "searchLockerId",
                 "pt": "msg",
-                "to": "waitingBorrowingKeyRequest.payload.locker_id",
+                "to": "waitingBorrowingKeyRequest.req.params.lockerId",
                 "tot": "flow"
             }
         ],
@@ -1744,8 +1745,8 @@
         "correl": "",
         "expiry": "",
         "broker": "f1738451fe9af7df",
-        "x": 530,
-        "y": 80,
+        "x": 1090,
+        "y": 140,
         "wires": []
     },
     {
@@ -1786,6 +1787,33 @@
         "wires": [
             [
                 "1c374b23d381f66e"
+            ]
+        ]
+    },
+    {
+        "id": "277b157b41d98a96",
+        "type": "change",
+        "z": "ed42732c80150553",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "req.params.lockerId",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 140,
+        "wires": [
+            [
+                "3c2a6aeec8ba4875"
             ]
         ]
     },
