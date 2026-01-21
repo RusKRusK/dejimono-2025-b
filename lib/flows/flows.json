@@ -1352,7 +1352,7 @@
         "type": "function",
         "z": "ed42732c80150553",
         "name": "setWaitingBorrowingKeyRequest",
-        "func": "flow.set(\"waitingBorrowingKeyRequest\", msg);\n\nreturn msg;\n",
+        "func": "const cloneMsg = RED.util.cloneMessage(msg);\nflow.set(\"waitingBorrowingKeyRequest\", cloneMsg);\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2506,7 +2506,6 @@
                 "b43368d627580408"
             ],
             [
-                "883ce178b0330f1e",
                 "7c1c4916c5d65308"
             ]
         ]
@@ -2516,17 +2515,19 @@
         "type": "function",
         "z": "d3c6b2c525f179e1",
         "name": "setWaitingReturningKeyRequest",
-        "func": "flow.set(\"waitingReturningKeyRequest\", msg);\n\nreturn null;\n",
+        "func": "const cloneMsg = RED.util.cloneMessage(msg);\nflow.set(\"waitingReturningKeyRequest\", cloneMsg);\n\nreturn null;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1170,
-        "y": 400,
+        "x": 1090,
+        "y": 360,
         "wires": [
-            []
+            [
+                "a3fe2f38c62298f7"
+            ]
         ]
     },
     {
@@ -2543,8 +2544,8 @@
         "correl": "",
         "expiry": "",
         "broker": "f1738451fe9af7df",
-        "x": 1130,
-        "y": 340,
+        "x": 1550,
+        "y": 360,
         "wires": []
     },
     {
@@ -2728,6 +2729,33 @@
         "wires": [
             [
                 "fd9413c99d1a6f04"
+            ]
+        ]
+    },
+    {
+        "id": "a3fe2f38c62298f7",
+        "type": "change",
+        "z": "d3c6b2c525f179e1",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "lockerId",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1340,
+        "y": 360,
+        "wires": [
+            [
+                "883ce178b0330f1e"
             ]
         ]
     },
